@@ -1,1 +1,1 @@
-# Managment-Panel
+# Management-Panel
