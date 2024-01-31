@@ -1,6 +1,5 @@
 import { sentryVitePlugin } from "@sentry/vite-plugin";
 import { defineNuxtConfig } from "nuxt/config";
-
 export default defineNuxtConfig({
   modules: ["@nuxtjs/color-mode"],
   //Global-Config
@@ -43,6 +42,8 @@ export default defineNuxtConfig({
       SENTRY_ERROR_REPLAY_SAMPLE_RATE: parseFloat(
         process.env.SENTRY_ERROR_REPLAY_SAMPLE_RATE ?? "0"
       ),
+      APP_VERSION: JSON.stringify(require("./package.json").version),
+      APP_ENVIRONMENT: process.env.NODE_ENV,
     },
   },
   sourcemap: true,
@@ -52,7 +53,7 @@ export default defineNuxtConfig({
       sentryVitePlugin({
         authToken: process.env.SENTRY_AUTH_TOKEN,
         org: "ruehrstaat",
-        project: "web-frontend",
+        project: "web-frontend"
       }),
     ],
   },

@@ -2,9 +2,10 @@
   <div
     class="navigation-rail-item"
     :class="{
-      'navigation-rail-item-active': props.isActive,
+      'navigation-rail-item-active': currentRoute.path == props.to,
       'navigation-rail-item-expanded': props.isExpanded,
     }"
+    @click="navigate()"
   >
     <div class="navigation-rail-item-pill-wrapper">
       <div class="navigation-rail-item-pill">
@@ -22,6 +23,8 @@
 
 <script lang="ts" setup>
 import type { PropType } from "vue";
+const router = useRouter();
+var currentRoute = router.currentRoute;
 const props = defineProps({
   icon: {
     type: String,
@@ -53,12 +56,19 @@ const props = defineProps({
     default: false,
     required: false,
   },
-  isActive: {
-    type: Boolean,
-    default: false,
-    required: true,
+  toggleFunc: {
+    type: Function,
+    default: () => {},
+    required: false,
   },
 });
+
+const navigate = () => {
+  router.push(props.to);
+  if (props.isExpanded) {
+    props.toggleFunc();
+  }
+};
 </script>
 
 <style scoped lang="scss">
@@ -96,9 +106,11 @@ const props = defineProps({
       line-height: 1;
       gap: 10px;
       overflow: hidden;
-      transition-property: width, height, border-radius, padding;
-      transition-duration: var(--animation-time-l);
-      transition-timing-function: var(--easing-default);
+      transition: background var(--animation-time-s) var(--easing-default),
+        border-radius var(--animation-time-l) var(--easing-default),
+        padding var(--animation-time-l) var(--easing-default),
+        width var(--animation-time-l) var(--easing-default),
+        height var(--animation-time-l) var(--easing-default);
 
       .navigation-rail-item-text-expanded {
         height: 20px;
