@@ -91,15 +91,6 @@
   --accent-900: #eadaf1;
   --accent-950: #f4ecf8;
 }
-
-:root body {
-  background-color: var(--background-50);
-  color: var(--text);
-  margin: 0;
-  transition: background var(--animation-time-s) ease-out, color var(--animation-time-s) ease-out;
-  font-family: 'Montserrat', sans-serif;
-}
-
 :root{
   --animation-time-xxs: .05s;
   --animation-time-xs: .1s;
@@ -120,4 +111,12 @@
 
   --easing-decelerate: cubic-bezier(0.05, 0.7, 0.1, 1.0);
   --easing-accelerate: cubic-bezier(0.3, 0.0, 0.8, 0.15);
+}
+
+:root body {
+  background-color: var(--background-50);
+  color: var(--text);
+  margin: 0;
+  transition: background var(--animation-time-m) var(--easing-default), color var(--animation-time-m) var(--easing-default);
+  font-family: 'Montserrat', sans-serif;
 }

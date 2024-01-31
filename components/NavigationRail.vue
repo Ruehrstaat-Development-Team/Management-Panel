@@ -1,40 +1,50 @@
 <template>
   <aside class="navigation-rail" :class="{ expanded: expanded }">
-    <span class="material-symbols-rounded navigation-rail-hamburger-menu" @click="expanded = !expanded">menu</span>
+    <span class="material-symbols-rounded navigation-rail-hamburger-menu" @click="toggleExpanded()">menu</span>
     <NavigationRailItem
       :icon="'home'"
       :title="'Home'"
       :is-active="true"
       :is-expanded="expanded"
+      :to="'/'"
     />
     <NavigationRailItem
       :icon="'handyman'"
       :title="'Carrier'"
       :is-active="false"
       :is-expanded="expanded"
+      :to="'/carrier'"
     />
     <NavigationRailItem
       :icon="'group'"
       :title="'Commander'"
       :is-active="false"
       :is-expanded="expanded"
+      :to="'/commander'"
     />
     <NavigationRailItem
       :icon="'inventory'"
       :title="'Management'"
       :is-active="false"
       :is-expanded="expanded"
+      :to="'/management'"
     />
     <select v-model="$colorMode.preference">
       <option>light</option>
       <option>dark</option>
       <option>system</option>
     </select>
+    <button @click="crash()">Helo</button>
   </aside>
 </template>
 
 <script setup lang="ts">
-var expanded = ref(false);
+var expanded = ref(localStorage.getItem("Navigation-Rail-Expanded") == 'true');
+
+const toggleExpanded = () => {
+  expanded.value = !expanded.value;
+  localStorage.setItem("Navigation-Rail-Expanded", expanded.value.toString());
+};
 </script>
 
 <style scoped lang="scss">
