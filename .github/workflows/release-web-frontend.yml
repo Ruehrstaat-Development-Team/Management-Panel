@@ -1,0 +1,18 @@
+name: Release Web-Frontend
+on:
+  # Trigger when a new release is published
+  release:
+    types: [published]
+    
+jobs:
+  set_version_number:
+    name: Set Version Number
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Set release_env
+        run: echo "RELEASE_VERSION=${GITHUB_REF#refs/*/}" >> $GITHUB_ENV
+      - name: Replace Version in package.json
+        uses: jaywcjlove/github-action-package@main
+        with:
+          version: ${{ env.RELEASE_VERSION }}
