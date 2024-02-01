@@ -18,4 +18,4 @@ jobs:
         with:
           version: ${{ env.RELEASE_VERSION }}
       - name: Test
-        run: echo ${{ steps.repl-package-version.outputs }}
+        run: echo ${{ toJSON(steps.repl-package-version.outputs) }}
