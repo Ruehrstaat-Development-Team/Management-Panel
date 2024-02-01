@@ -21,12 +21,6 @@ jobs:
         uses: jaywcjlove/github-action-package@main
         with:
           version: ${{ env.RELEASE_VERSION }}
-      - name: Write changes to File
-        uses: DamianReeves/write-file-action@master
-        with:
-          path: package.json
-          write-mode: overwrite
-          contents: ${{ steps.repl-package-version.outputs }}
       - name: Commit and Push Changes
         uses: actions-js/push@master
         with:
