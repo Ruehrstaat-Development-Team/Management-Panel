@@ -3,8 +3,6 @@ on:
   # Trigger when a new release is published
   release:
     types: [published]
-
-  workflow_dispatch:
     
 jobs:
   # This workflow contains a single job called "build"
