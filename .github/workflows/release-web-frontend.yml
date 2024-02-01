@@ -9,7 +9,11 @@ jobs:
     name: Set Version Number
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+          fetch-depth: 0
       - name: Set release_env
         run: echo "RELEASE_VERSION=${GITHUB_REF#refs/*/}" >> $GITHUB_ENV
       - name: Replace Version in package.json
@@ -17,5 +21,15 @@ jobs:
         uses: jaywcjlove/github-action-package@main
         with:
           version: ${{ env.RELEASE_VERSION }}
-      - name: Test
-        run: echo '${{ toJSON(steps.repl-package-version.outputs) }}'
+      - name: Write changes to File
+        uses: DamianReeves/write-file-action@master
+        with:
+          path: package.json
+          write-mode: overwrite
+          contents: ${{ steps.repl-package-version.outputs }}
+      - name: Commit and Push Changes
+        uses: actions-js/push@master
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          message: 'Set Release Version to latest release'
+      
