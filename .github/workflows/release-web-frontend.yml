@@ -47,7 +47,7 @@ jobs:
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-          projectName: ruehrstaat-beta
+          projectName: ${{ vars.CLOUDFLARE_PROJECT_NAME_BETA }}
           directory: .output/public
       - name: Publish to CLoudflare Pages (RELEASE)
         uses: cloudflare/pages-action@v1
@@ -55,7 +55,7 @@ jobs:
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-          projectName: ruehrstaat-beta
+          projectName: ${{ vars.CLOUDFLARE_PROJECT_NAME }}
           directory: .output/public
   notify-sentry:
     name: Notifiy Sentry
