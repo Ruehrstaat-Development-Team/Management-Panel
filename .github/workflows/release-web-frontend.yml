@@ -49,6 +49,7 @@ jobs:
           accountID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
           projectName: ${{ vars.CLOUDFLARE_PROJECT_NAME_BETA }}
           directory: .output/public
+          branch: production
       - name: Publish to CLoudflare Pages (RELEASE)
         uses: cloudflare/pages-action@v1
         if: "!github.event.release.prerelease"
@@ -57,6 +58,7 @@ jobs:
           accountID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
           projectName: ${{ vars.CLOUDFLARE_PROJECT_NAME }}
           directory: .output/public
+          branch: production
   notify-sentry:
     name: Notifiy Sentry
     runs-on: ubuntu-latest
