@@ -37,7 +37,8 @@ export default defineNuxtPlugin({
           replaysOnErrorSampleRate: config.public.SENTRY_ERROR_REPLAY_SAMPLE_RATE as number,
           release: config.public.APP_VERSION as string ?? undefined,
           environment: config.public.APP_ENVIRONMENT as string ?? undefined,
-          enabled: config.public.APP_ENVIRONMENT != "development"
+          enabled: config.public.APP_ENVIRONMENT != "development",
+          
         });
 
         lazyLoadSentryIntegrations();

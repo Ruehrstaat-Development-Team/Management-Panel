@@ -142,3 +142,18 @@ const toggleExpanded = () => {
   pointer-events: all;
 }
 </style>
+
+<style lang="scss">
+@use "~/assets/css/main.scss";
+.navigation-rail .navigation-rail-item:hover{
+  .navigation-rail-item-pill{
+    background: var(--background-hover);
+  }
+}
+
+.navigation-rail .navigation-rail-item-active:hover{
+  .navigation-rail-item-pill{
+    background: var(--background-hover-active);
+  }
+}
+</style>
