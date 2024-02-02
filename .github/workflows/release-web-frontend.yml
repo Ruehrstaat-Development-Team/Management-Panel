@@ -28,37 +28,27 @@ jobs:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           message: 'Set Release Version to latest release'
   deploy:
-    name: Deploy new Version to Cloudflare Pages
+    name: Deploy to Cloudflare via merge to release branch
     runs-on: ubuntu-latest
     needs: set_version_number
     steps:
-      - name: Checkout Repository
-        uses: actions/checkout@v4
-      - name: Use Node.js ${{ matrix.node-version }}
-        uses: actions/setup-node@v3
-        with:
-          node-version: ${{ matrix.node-version }}
-          cache: 'npm'
-      - run: npm install
-      - run: npm run generate --if-present
-      - name: Publish to CLoudflare Pages (BETA)
-        uses: cloudflare/pages-action@v1
+      - uses: actions/checkout@v4
+      - name: Merge main -> beta-ci
+        uses: devmasx/merge-branch@master
         if: "github.event.release.prerelease"
         with:
-          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
-          accountID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-          projectName: ${{ vars.CLOUDFLARE_PROJECT_NAME_BETA }}
-          directory: .output/public
-          branch: production
-      - name: Publish to CLoudflare Pages (RELEASE)
-        uses: cloudflare/pages-action@v1
+          type: now
+          from_branch: main
+          target_branch: beta-ci
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+      - name: Merge main -> release-ci
+        uses: devmasx/merge-branch@master
         if: "!github.event.release.prerelease"
         with:
-          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
-          accountID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-          projectName: ${{ vars.CLOUDFLARE_PROJECT_NAME }}
-          directory: .output/public
-          branch: production
+          type: now
+          from_branch: main
+          target_branch: release-ci
+          github_token: ${{ secrets.GITHUB_TOKEN }}
   notify-sentry:
     name: Notifiy Sentry
     runs-on: ubuntu-latest
