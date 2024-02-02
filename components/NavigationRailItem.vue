@@ -9,7 +9,7 @@
   >
     <div class="navigation-rail-item-pill-wrapper">
       <div class="navigation-rail-item-pill">
-        <span class="material-symbols-rounded">{{ props.icon }}</span>
+        <span class="material-symbols-rounded navigation-rail-item-icon">{{ props.icon }}</span>
         <span class="navigation-rail-item-text-expanded">{{
           props.title
         }}</span>
@@ -133,7 +133,6 @@ const navigate = () => {
 
     .navigation-rail-item-text {
       font-size: 12px;
-      color: var(--text);
       font-weight: 500;
       text-align: center;
       height: 0px;
@@ -180,6 +179,10 @@ const navigate = () => {
 
   .navigation-rail-item-pill {
     background: var(--background-200);
+
+    .navigation-rail-item-icon {
+      color: var(--text);
+    }
   }
 }
 </style>
