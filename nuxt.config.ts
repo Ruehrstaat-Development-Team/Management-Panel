@@ -65,5 +65,5 @@ export default defineNuxtConfig({
       enabled: true,
     },
   },
-  ssr: false,
+  ssr: true,
 });
