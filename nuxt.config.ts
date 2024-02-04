@@ -66,7 +66,7 @@ export default defineNuxtConfig({
       enabled: true,
     },
   },
-  ssr: false,
+  ssr: true,
   nitro: {
     output: {
       publicDir: path.join(__dirname, "dist"),
