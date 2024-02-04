@@ -1,5 +1,6 @@
 import { sentryVitePlugin } from "@sentry/vite-plugin";
 import { defineNuxtConfig } from "nuxt/config";
+const path = require("path");
 export default defineNuxtConfig({
   modules: ["@nuxtjs/color-mode", "@nuxtjs/device"],
   //Global-Config
@@ -66,4 +67,9 @@ export default defineNuxtConfig({
     },
   },
   ssr: true,
+  nitro: {
+    output: {
+      publicDir: path.join(__dirname, "dist"),
+    },
+  }
 });
