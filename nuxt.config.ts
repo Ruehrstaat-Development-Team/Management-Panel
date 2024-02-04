@@ -1,7 +1,7 @@
 import { sentryVitePlugin } from "@sentry/vite-plugin";
 import { defineNuxtConfig } from "nuxt/config";
 export default defineNuxtConfig({
-  modules: ["@nuxtjs/color-mode"],
+  modules: ["@nuxtjs/color-mode", "@nuxtjs/device"],
   //Global-Config
   css: ["~/assets/css/main.scss"],
   app: {
@@ -53,7 +53,7 @@ export default defineNuxtConfig({
       sentryVitePlugin({
         authToken: process.env.SENTRY_AUTH_TOKEN,
         org: "ruehrstaat",
-        project: "web-frontend"
+        project: "web-frontend",
       }),
     ],
   },

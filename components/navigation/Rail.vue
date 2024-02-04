@@ -1,46 +1,21 @@
 <template>
   <div
     class="dialog-background"
-    :class="{ expanded: expanded }"
+    :class="{ expanded: props.nav.IsExpanded.value }"
     @click="toggleExpanded()"
   ></div>
-  <aside class="navigation-rail" :class="{ expanded: expanded }">
+  <aside class="navigation-rail" :class="{ expanded: props.nav.IsExpanded.value }">
     <span
       class="material-symbols-rounded navigation-rail-hamburger-menu"
       @click="toggleExpanded()"
       >menu</span
     >
     <span class="navigation-rail-title-text">Ruehrstaat Squadron</span>
-    <NavigationRailItem
-      :icon="'home'"
-      :title="'Home'"
-      :is-active="true"
-      :is-expanded="expanded"
-      :to="'/'"
-      :toggle-func="toggleExpanded"
-    />
-    <NavigationRailItem
-      :icon="'handyman'"
-      :title="'Carrier'"
-      :is-active="false"
-      :is-expanded="expanded"
-      :to="'/carrier'"
-      :toggle-func="toggleExpanded"
-    />
-    <NavigationRailItem
-      :icon="'group'"
-      :title="'Commander'"
-      :is-active="false"
-      :is-expanded="expanded"
-      :to="'/commander'"
-      :toggle-func="toggleExpanded"
-    />
-    <NavigationRailItem
-      :icon="'inventory'"
-      :title="'Management'"
-      :is-active="false"
-      :is-expanded="expanded"
-      :to="'/management'"
+    <NavigationRailItem v-for="item in props.nav.Destinations"
+      :icon="item.Icon"
+      :title="item.Name"
+      :is-expanded="props.nav.IsExpanded.value"
+      :to="item.Path"
       :toggle-func="toggleExpanded"
     />
     <select v-model="$colorMode.preference">
@@ -52,10 +27,15 @@
 </template>
 
 <script setup lang="ts">
-var expanded = ref(false);
+const props = defineProps({
+  nav: {
+    type: Object,
+    required: true,
+  }
+})
 
 const toggleExpanded = () => {
-  expanded.value = !expanded.value;
+  props.nav.IsExpanded.value = !props.nav.IsExpanded.value;
 };
 </script>
 
