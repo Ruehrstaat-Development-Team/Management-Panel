@@ -2,10 +2,10 @@
   "name": "nuxt-app",
   "private": true,
   "type": "module",
-  "version": "0.9.0-beta.0",
+  "version": "0.9.0-beta.6",
   "scripts": {
     "build": "nuxt build",
-    "dev": "nuxt dev",
+    "dev": "cross-env NODE_ENV=development HOST=192.168.178.39 PORT=3000 nuxt dev",
     "generate": "nuxt generate",
     "preview": "nuxt preview",
     "postinstall": "nuxt prepare"
@@ -13,10 +13,12 @@
   "devDependencies": {
     "nuxt": "^3.9.3",
     "vue": "^3.4.14",
-    "vue-router": "^4.2.5"
+    "vue-router": "^4.2.5",
+    "cross-env": "^7.0.3"
   },
   "dependencies": {
     "@nuxtjs/color-mode": "^3.3.2",
+    "@nuxtjs/device": "^3.1.1",
     "@sentry/vite-plugin": "^2.10.3",
     "@sentry/vue": "^7.99.0",
     "sass": "^1.70.0"

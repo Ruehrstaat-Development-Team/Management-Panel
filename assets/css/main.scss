@@ -1,5 +1,6 @@
 :root.light-mode {
   --text: #040316;
+  --text-inactive: #58557e;
 
   --background-50: #f6f0fd;
   --background-100: #ece0fd;
@@ -7,6 +8,9 @@
   --background-300: #ceb0fa;
   --background-400: #bd93fc;
   --background-500: #a973fa;
+
+  --background-hover: #dad0eb;
+  --background-hover-active: #c3a1ee;
 
   --primary-50: #fcfce8;
   --primary-100: #faf9d1;
@@ -46,6 +50,7 @@
 }
 :root.dark-mode {
   --text: #eae9fc;
+  --text-inactive: #b5b3d4;
 
   --background-50: #120e18;
   --background-100: #282033;
@@ -54,6 +59,8 @@
   --background-400: #9371c7;
   --background-500: #be97f8;
 
+  --background-hover: #4d4558;
+  --background-hover-active: #5e4580;
 
   --primary-50: #171703;
   --primary-100: #2e2d05;
@@ -91,32 +98,51 @@
   --accent-900: #eadaf1;
   --accent-950: #f4ecf8;
 }
-:root{
-  --animation-time-xxs: .05s;
-  --animation-time-xs: .1s;
-  --animation-time-s: .2s;
-  --animation-time-m: .4s;
-  --animation-time-l: .6s;
-  --animation-time-xl: .8s;
+:root {
+  --animation-time-xxs: 0.05s;
+  --animation-time-xs: 0.1s;
+  --animation-time-s: 0.2s;
+  --animation-time-m: 0.4s;
+  --animation-time-l: 0.6s;
+  --animation-time-xl: 0.8s;
   --animation-time-xxl: 1s;
 
   --easing-default: linear(
-    0, 0.00245 1.753%, 0.00994 3.55%, 0.03415 6.402%, 0.07376 9.061%,
-    0.12808 11.414%, 0.19399 13.366%, 0.27138 14.974%, 0.34403 16.052%,
-    0.54434 18.338%, 0.60689 19.389%, 0.66036 20.609%, 0.71671 22.4%,
-    0.76532 24.589%, 0.80828 27.285%, 0.84475 30.42%, 0.88332 35.056%,
-    0.91554 40.622%, 0.94208 47.239%, 0.96327 54.986%, 0.9795 64.011%,
-    0.99095 74.434%, 0.99774 86.373%, 1
+    0,
+    0.00245 1.753%,
+    0.00994 3.55%,
+    0.03415 6.402%,
+    0.07376 9.061%,
+    0.12808 11.414%,
+    0.19399 13.366%,
+    0.27138 14.974%,
+    0.34403 16.052%,
+    0.54434 18.338%,
+    0.60689 19.389%,
+    0.66036 20.609%,
+    0.71671 22.4%,
+    0.76532 24.589%,
+    0.80828 27.285%,
+    0.84475 30.42%,
+    0.88332 35.056%,
+    0.91554 40.622%,
+    0.94208 47.239%,
+    0.96327 54.986%,
+    0.9795 64.011%,
+    0.99095 74.434%,
+    0.99774 86.373%,
+    1
   );
 
-  --easing-decelerate: cubic-bezier(0.05, 0.7, 0.1, 1.0);
-  --easing-accelerate: cubic-bezier(0.3, 0.0, 0.8, 0.15);
+  --easing-decelerate: cubic-bezier(0.05, 0.7, 0.1, 1);
+  --easing-accelerate: cubic-bezier(0.3, 0, 0.8, 0.15);
 }
 
 :root body {
   background-color: var(--background-50);
   color: var(--text);
   margin: 0;
-  transition: background var(--animation-time-m) var(--easing-default), color var(--animation-time-m) var(--easing-default);
-  font-family: 'Montserrat', sans-serif;
+  transition: background var(--animation-time-m) var(--easing-default),
+    color var(--animation-time-m) var(--easing-default);
+  font-family: "Montserrat", sans-serif;
 }
