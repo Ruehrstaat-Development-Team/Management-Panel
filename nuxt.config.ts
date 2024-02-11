@@ -55,6 +55,7 @@ export default defineNuxtConfig({
         authToken: process.env.SENTRY_AUTH_TOKEN,
         org: "ruehrstaat",
         project: "web-frontend",
+        telemetry: false,
       }),
     ],
   },
@@ -71,5 +72,5 @@ export default defineNuxtConfig({
     output: {
       publicDir: path.join(__dirname, "dist"),
     },
-  }
+  },
 });
