@@ -1,5 +1,5 @@
 <template>
-  <header class="site-header-wrapper" :class="{'desktop-site-header-wrapper': $device.isDesktop}" :style="{ height: headerHeight + 'px', 'border-bottom-left-radius': headerBorderRadius + 'px', 'border-bottom-right-radius': headerBorderRadius + 'px' }">
+  <header class="site-header-wrapper" :style="{ height: headerHeight + 'px', 'border-bottom-left-radius': headerBorderRadius + 'px', 'border-bottom-right-radius': headerBorderRadius + 'px' }">
     <ThemeImage :dark_src="'/HeaderBackgroundDark.webp'" :light_src="'/HeaderBackgroundLight.webp'" class="site-header-background" :style="{opacity: headerBackgroundOpacity}"/>
     <div class="site-header">
       <div
@@ -92,7 +92,7 @@ function handleScroll() {
   }
 }
 
-.site-header-wrapper.desktop-site-header-wrapper {
+.site-header-wrapper.desktop-header {
   position: relative;
   height: 80px;
   margin: 20px 50px 20px 130px;
