@@ -2,11 +2,11 @@
   <div>
     <SharedHeader
       :nav="nav"
-      :class="{ 'desktop-header': $device.isDesktopOrTablet }"
+      :class="{ 'desktop-header': device }"
     />
-    <NavigationRail v-if="$device.isDesktopOrTablet" :nav="nav" />
-    <NavigationDrawer v-if="$device.isMobile" :nav="nav" />
-    <main :class="{ 'desktop-main': $device.isDesktopOrTablet }">
+    <NavigationRail v-if="device" :nav="nav" />
+    <NavigationDrawer v-if="!device" :nav="nav" />
+    <main :class="{ 'desktop-main': device }">
       <slot />
     </main>
   </div>
@@ -22,20 +22,27 @@
   margin-left: 80px;
 }
 
-main{
+main {
   margin-top: 200px;
 }
 </style>
 
 <script setup lang="ts">
 const nav = navigation();
-
+const device = computed(() => {
+  return useDevice().isDesktopOrTablet;
+});
 const router = useRouter();
 var currentRoute = router.currentRoute;
-var currentRouteName = computed(() => {return nav.Destinations.find((d: any) => d.Path === currentRoute.value.path)?.Name + " - Rührstaat Squadron"});
+var currentRouteName = computed(() => {
+  return (
+    nav.Destinations.find((d: any) => d.Path === currentRoute.value.path)
+      ?.Name + " - Rührstaat Squadron"
+  );
+});
 useHead({
-  title: currentRouteName 
-})
+  title: currentRouteName,
+});
 
 type Device = {
   userAgent: string;
