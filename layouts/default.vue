@@ -2,11 +2,16 @@
   <div>
     <SharedHeader
       :nav="nav"
-      :class="{ 'desktop-header': device }"
+      class="desktop-header"
+      v-if="device"
     />
+    <SharedHeader :nav="nav" v-if="!device"/>
     <NavigationRail v-if="device" :nav="nav" />
     <NavigationDrawer v-if="!device" :nav="nav" />
-    <main :class="{ 'desktop-main': device }">
+    <main class="desktop-main" v-if="device">
+      <slot />
+    </main>
+    <main v-if="!device">
       <slot />
     </main>
   </div>
