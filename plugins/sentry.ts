@@ -38,7 +38,6 @@ export default defineNuxtPlugin({
           release: config.public.APP_VERSION as string ?? undefined,
           environment: config.public.APP_ENVIRONMENT as string ?? undefined,
           enabled: config.public.APP_ENVIRONMENT != "development",
-          
         });
 
         lazyLoadSentryIntegrations();
