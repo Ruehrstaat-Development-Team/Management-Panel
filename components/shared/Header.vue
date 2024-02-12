@@ -1,6 +1,6 @@
 <template>
-  <header class="site-header-wrapper" :style="{ height: headerHeight + 'px', 'border-bottom-left-radius': headerBorderRadius + 'px', 'border-bottom-right-radius': headerBorderRadius + 'px' }">
-    <img src="/HeaderBackgroundDark.webp" class="site-header-background" :style="{opacity: headerBackgroundOpacity}"/>
+  <header class="site-header-wrapper" :class="{'desktop-site-header-wrapper': $device.isDesktop}" :style="{ height: headerHeight + 'px', 'border-bottom-left-radius': headerBorderRadius + 'px', 'border-bottom-right-radius': headerBorderRadius + 'px' }">
+    <ThemeImage :dark_src="'/HeaderBackgroundDark.webp'" :light_src="'/HeaderBackgroundLight.webp'" class="site-header-background" :style="{opacity: headerBackgroundOpacity}"/>
     <div class="site-header">
       <div
         class="menu-wrapper"
@@ -88,6 +88,28 @@ function handleScroll() {
     top: 0;
     left: 0;
     z-index: -1;
+    object-fit: cover;
+  }
+}
+
+.site-header-wrapper.desktop-site-header-wrapper {
+  position: relative;
+  height: 80px;
+  margin: 20px 50px 20px 130px;
+  width: calc(100% - 220px);
+  border-radius: 50px !important;
+  padding: 20px;
+  .site-header {
+    padding: 0 15px;
+    z-index: 0;
+  }
+
+  .site-header-background{
+    width: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 0;
   }
 }
 

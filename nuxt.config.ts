@@ -2,7 +2,7 @@ import { sentryVitePlugin } from "@sentry/vite-plugin";
 import { defineNuxtConfig } from "nuxt/config";
 const path = require("path");
 export default defineNuxtConfig({
-  modules: ["@nuxtjs/color-mode", "@nuxtjs/device"],
+  modules: ["@nuxtjs/color-mode", "@nuxtjs/device", "@nuxt/image"],
   //Global-Config
   css: ["~/assets/css/main.scss"],
   app: {

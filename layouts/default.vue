@@ -15,6 +15,7 @@
 <style scoped lang="scss">
 .desktop-main {
   margin-left: 80px;
+  margin-top: 0px;
 }
 
 .desktop-header {

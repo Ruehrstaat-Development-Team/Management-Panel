@@ -3,6 +3,11 @@
   <aside class="navigation-drawer" :class="{expanded: props.nav.IsExpanded.value}">
     <span class="navigation-drawer-title">Rührstaat Squadron</span>
     <NavigationDrawerItem v-for="item in props.nav.Destinations" :icon="item.Icon" :title="item.Name" :to="item.Path" :toggle-func="toggleExpanded" />
+    <select v-model="$colorMode.preference">
+      <option>light</option>
+      <option>dark</option>
+      <option>system</option>
+    </select>
   </aside>
 </template>
 
