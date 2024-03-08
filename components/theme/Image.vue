@@ -1,9 +1,11 @@
 <template>
-  <img :src="src" v-if="!$colorMode.unknown">
+  <ClientOnly >
+    <img :src="src" v-if="!$colorMode.unknown" />
+  </ClientOnly>
 </template>
 
 <script lang="ts" setup>
-import { computed } from 'vue';
+import { computed } from "vue";
 
 const props = defineProps({
   dark_src: {
@@ -12,19 +14,18 @@ const props = defineProps({
   },
   light_src: {
     type: String,
-    required: true
-  }
+    required: true,
+  },
 });
 const colorMode = useColorMode();
 const src = computed(() => {
-  if(colorMode.value == "dark"){
+  if (colorMode.value == "dark") {
     return props.dark_src;
   } else {
     return props.light_src;
   }
-})
+});
 </script>
 
-<style>
-
+<style lang="scss">
 </style>

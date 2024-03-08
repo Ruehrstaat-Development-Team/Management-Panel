@@ -3,15 +3,15 @@
     <SharedHeader
       :nav="nav"
       class="desktop-header"
-      v-if="device"
+      v-if="$device.isDesktopOrTablet"
     />
-    <SharedHeader :nav="nav" v-if="!device"/>
-    <NavigationRail v-if="device" :nav="nav" />
-    <NavigationDrawer v-if="!device" :nav="nav" />
-    <main class="desktop-main" v-if="device">
+    <SharedHeader :nav="nav" v-if="$device.isMobile"/>
+    <NavigationRail v-if="$device.isDesktopOrTablet" :nav="nav" />
+    <NavigationDrawer v-if="$device.isMobile" :nav="nav" />
+    <main class="desktop-main" v-if="$device.isDesktopOrTablet">
       <slot />
     </main>
-    <main v-if="!device">
+    <main v-if="$device.isMobile">
       <slot />
     </main>
   </div>
@@ -34,9 +34,6 @@ main {
 
 <script setup lang="ts">
 const nav = navigation();
-const device = computed(() => {
-  return useDevice().isDesktopOrTablet;
-});
 const router = useRouter();
 var currentRoute = router.currentRoute;
 var currentRouteName = computed(() => {

@@ -59,6 +59,9 @@ export default defineNuxtConfig({
       }),
     ],
   },
+  device: {
+    refreshOnResize: true
+  },
   //Deployment
   devtools: {
     enabled: true,
