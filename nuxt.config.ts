@@ -2,9 +2,14 @@ import { sentryVitePlugin } from "@sentry/vite-plugin";
 import { defineNuxtConfig } from "nuxt/config";
 const path = require("path");
 export default defineNuxtConfig({
-  modules: ["@nuxtjs/color-mode", "@nuxtjs/device", "@nuxt/image"],
+  modules: [
+    "@nuxtjs/color-mode",
+    "@nuxtjs/device",
+    "@nuxt/image",
+    "nuxt-viewport",
+  ],
   //Global-Config
-  css: ["~/assets/css/main.scss"],
+  css: ["~/assets/css/main.scss", "~/assets/css/components.scss"],
   app: {
     head: {
       meta: [
@@ -60,7 +65,7 @@ export default defineNuxtConfig({
     ],
   },
   device: {
-    refreshOnResize: true
+    refreshOnResize: true,
   },
   //Deployment
   devtools: {
