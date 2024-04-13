@@ -1,12 +1,23 @@
 <template>
-  <h2>Rührstaat Squadron</h2>
+  <h2>Ruehrstaat Squadron</h2>
   <div class="input-wrapper">
-    <input type="email" placeholder="E-Mail" class="login-input" />
-    <input type="password" placeholder="Passwort" class="login-input" />
+    <InputOutlined
+      type="email"
+      placeholder="E-Mail"
+      v-model="loginData.email"
+    />
+    <InputOutlined
+      type="password"
+      placeholder="Passwort"
+      v-model="loginData.password"
+    />
   </div>
   <div class="button-wrapper">
-    <button class="btn-outlined">Registrieren</button>
-    <button class="btn-filled">Anmelden</button>
+    <ButtonOutlined
+      :text="$t('register')"
+      @click="console.log('Registrieren')"
+    />
+    <ButtonPrimary :text="$t('login')" icon="login" @click="handleSubmit()" />
   </div>
 </template>
 
@@ -14,6 +25,27 @@
 definePageMeta({
   layout: "centered",
 });
+
+const { $api, $session } = useNuxtApp();
+
+const loginData = reactive<Credentials>({
+  email: "",
+  password: "",
+  otp: null,
+});
+
+async function handleSubmit(): Promise<void> {
+  try {
+    const credentials: Credentials = {
+      email: loginData.email,
+      password: loginData.password,
+      otp: loginData.otp,
+    };
+    const response: TokenResponse = await $api.auth.login(credentials);
+  } catch (error) {
+    console.log(error);
+  }
+}
 </script>
 
 <style lang="scss" scoped>
@@ -33,5 +65,9 @@ h2 {
   justify-content: space-between;
   gap: 1rem;
   width: 100%;
+
+  button {
+    width: 50%;
+  }
 }
 </style>

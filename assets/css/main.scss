@@ -2,6 +2,8 @@
   --text: #040316;
   --text-inactive: #58557e;
 
+  --error: #ff3b44;
+
   --background-50: #f6f0fd;
   --background-100: #ece0fd;
   --background-200: #dfd0f7;
@@ -51,6 +53,8 @@
 :root.dark-mode {
   --text: #eae9fc;
   --text-inactive: #b5b3d4;
+
+  --error: #ff3b44;
 
   --background-50: #120e18;
   --background-100: #282033;

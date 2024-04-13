@@ -32,6 +32,12 @@
       <option value="dark">Dunkel</option>
     </select>
   </div>
+  <div>
+    <select v-model="$i18n.locale">
+      <option value="de">Deutsch</option>
+      <option value="en">English</option>
+    </select>
+  </div>
 </template>
 
 <script lang="ts" setup></script>
@@ -120,7 +126,7 @@
   }
 }
 
-.color-mode-selector{
+.color-mode-selector {
   position: fixed;
   top: 50px;
   right: 50px;

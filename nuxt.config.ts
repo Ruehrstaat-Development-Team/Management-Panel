@@ -4,8 +4,8 @@ const path = require("path");
 export default defineNuxtConfig({
   modules: [
     "@nuxtjs/color-mode",
-    "@nuxtjs/device",
     "@nuxt/image",
+    "@nuxtjs/i18n",
     "nuxt-viewport",
   ],
   //Global-Config
@@ -35,6 +35,31 @@ export default defineNuxtConfig({
     preference: "system",
     fallback: "dark",
   },
+  i18n: {
+    strategy: "no_prefix",
+    detectBrowserLanguage: {
+      useCookie: true,
+      cookieKey: "i18n_redirected",
+      alwaysRedirect: true,
+      redirectOn: "root",
+    },
+    langDir: "lang/",
+    locales: [
+      {
+        code: "en",
+        name: "English",
+        iso: "en-US",
+        file: "en.ts",
+      },
+      {
+        code: "de",
+        name: "Deutsch",
+        iso: "de-DE",
+        file: "de.ts",
+      },
+    ],
+    defaultLocale: "en",
+  },
   runtimeConfig: {
     public: {
       // Config within public will be also exposed to the client
@@ -50,6 +75,7 @@ export default defineNuxtConfig({
       ),
       APP_VERSION: JSON.stringify(require("./package.json").version),
       APP_ENVIRONMENT: process.env.NODE_ENV,
+      API_BASE_URL: process.env.API_BASE_URL,
     },
   },
   sourcemap: true,
@@ -63,9 +89,6 @@ export default defineNuxtConfig({
         telemetry: false,
       }),
     ],
-  },
-  device: {
-    refreshOnResize: true,
   },
   //Deployment
   devtools: {
