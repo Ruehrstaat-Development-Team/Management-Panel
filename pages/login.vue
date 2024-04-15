@@ -26,7 +26,9 @@ definePageMeta({
   layout: "centered",
 });
 
-const { $api, $session } = useNuxtApp();
+const { $api } = useNuxtApp();
+const session = useSession();
+const { alerts, AlertService } = useAlerts();
 
 const loginData = reactive<Credentials>({
   email: "",
@@ -41,9 +43,16 @@ async function handleSubmit(): Promise<void> {
       password: loginData.password,
       otp: loginData.otp,
     };
-    const response: TokenResponse = await $api.auth.login(credentials);
-  } catch (error) {
-    console.log(error);
+    const response: SessionToken = await $api.auth.login(credentials);
+    session.setSession(response);
+  } catch (errorBody) {
+    const data = errorBody as ApiError;
+    AlertService.addAlert({
+      title: "Error",
+      message: data.error,
+      type: "error",
+      ttl: 5,
+    } as Alert);
   }
 }
 </script>

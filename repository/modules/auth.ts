@@ -1,8 +1,8 @@
 import HttpFactory from "../factory";
 
 class AuthModule extends HttpFactory {
-  async login(credentials: Credentials) {
-    return this.post<TokenResponse>("/auth/login", credentials);
+  async login(credentials: Credentials): Promise<SessionToken> {
+    return this.post<SessionToken>("/auth/login", credentials, false);
   }
 }
 

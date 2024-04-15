@@ -4,7 +4,11 @@ type Credentials = {
     otp: string | null;
 }
 
-type TokenResponse = {
+type SessionToken = {
     token: string;
-    expiresAt: Date;
+    expiresAt: number;
+}
+
+type ApiError = {
+    error: string;
 }

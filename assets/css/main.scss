@@ -2,7 +2,12 @@
   --text: #040316;
   --text-inactive: #58557e;
 
-  --error: #ff3b44;
+  --success: #36be48;
+  --warning: #e2a01b;
+  --error: #e62832;
+  --info: #5496c5;
+
+  --text-on-error: #f8f8f8;
 
   --background-50: #f6f0fd;
   --background-100: #ece0fd;
@@ -54,7 +59,10 @@
   --text: #eae9fc;
   --text-inactive: #b5b3d4;
 
-  --error: #ff3b44;
+  --success: #078039;
+  --warning: #9b6803;
+  --error: #aa1c23;
+  --info: #0e4f85;
 
   --background-50: #120e18;
   --background-100: #282033;

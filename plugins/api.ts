@@ -18,27 +18,9 @@ export default defineNuxtPlugin((nuxtApp) => {
     auth: new AuthModule(apiFetcher),
   };
 
-  const session = {
-    token: useCookie("session_token", { path: "/", secure: true }),
-    expires: useCookie("session_expires", { path: "/", secure: true }),
-    set_Session: setSession,
-  };
-
-  function setSession(token: TokenResponse) {
-    session.token = useCookie("session_token",{ path: "/" , secure: true, expires: new Date(token.expiresAt) });
-    session.expires = useCookie("session_expires", {
-      path: "/",
-      secure: true,
-      expires: new Date(token.expiresAt),
-    });
-    session.token.value = token.token;
-    session.expires.value = new Date(token.expiresAt).toISOString();
-  }
-
   return {
     provide: {
         api: modules,
-        session: session,
     },
   }
 });

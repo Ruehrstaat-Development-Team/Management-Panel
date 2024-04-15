@@ -32,16 +32,18 @@
       <option value="dark">Dunkel</option>
     </select>
   </div>
-  <div>
+  <div class="locale-selector">
     <select v-model="$i18n.locale">
       <option value="de">Deutsch</option>
       <option value="en">English</option>
     </select>
   </div>
+  <Alerts :alert_service="AlertService" :alerts="alerts" v-if="alerts.length > 0" />
 </template>
 
-<script lang="ts" setup></script>
-
+<script lang="ts" setup>
+const { alerts, AlertService } = useAlerts();
+</script>
 <style lang="scss">
 //Mobile
 @media (max-width: 767px) {
@@ -130,6 +132,19 @@
   position: fixed;
   top: 50px;
   right: 50px;
+  select {
+    padding: 5px;
+    border-radius: 5px;
+    border: 1px solid var(--background-100);
+    background: var(--background-100);
+    color: var(--text-100);
+  }
+}
+
+.locale-selector {
+  position: fixed;
+  top: 50px;
+  right: 150px;
   select {
     padding: 5px;
     border-radius: 5px;
