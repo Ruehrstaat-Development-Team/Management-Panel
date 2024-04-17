@@ -38,7 +38,7 @@
       <option value="en">English</option>
     </select>
   </div>
-  <Alerts :alert_service="AlertService" :alerts="alerts" v-if="alerts.length > 0" />
+  <Alerts :alert_service="AlertService" :alerts="alerts"/>
 </template>
 
 <script lang="ts" setup>
@@ -75,7 +75,7 @@ const { alerts, AlertService } = useAlerts();
         overflow: hidden;
         position: relative;
 
-        img {
+        .theme-image {
           width: 100%;
           height: 100%;
           object-fit: cover;
@@ -108,7 +108,7 @@ const { alerts, AlertService } = useAlerts();
             padding: 10px;
             border-radius: 15px;
             background: var(--background-100);
-            img {
+            .theme-image {
               width: 100%;
               height: 100%;
               object-fit: contain;

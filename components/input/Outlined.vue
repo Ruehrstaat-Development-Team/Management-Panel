@@ -1,7 +1,7 @@
 <template>
   <div class="input-text" :class="{error: props.error}">
     <input :type="type" @focus="focus()" @blur="blur()" v-model="model"/>
-    <span class="placeholder" :class="{focused: focused}">{{ props.placeholder }}</span>
+    <span class="placeholder" :class="{focused: focused}">{{ props.label }}</span>
   </div>
 </template>
 
@@ -12,7 +12,7 @@ const props = defineProps({
     required: false,
     default: "text",
   },
-  placeholder:{
+  label:{
     type: String,
     required: false,
   },

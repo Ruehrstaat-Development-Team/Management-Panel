@@ -1,5 +1,5 @@
 {
   // https://nuxt.com/docs/guide/concepts/typescript
   "extends": "./.nuxt/tsconfig.json",
-  "files": ["./@types/composables.ts", "./@types/api/auth.ts"]
+  "files": ["./@types/composables.ts", "./@types/api/auth.ts", "./@types/components/button.ts"]
 }

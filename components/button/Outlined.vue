@@ -1,5 +1,5 @@
 <template>
-  <button @click="onClick()"><span v-if="icon != null" class="material-symbols-rounded">{{ icon }}</span><span v-if="text != null">{{ text }}</span></button>
+  <button @click="props.onClick()"><span v-if="props.icon != null" class="material-symbols-rounded">{{ props.icon }}</span><span v-if="props.text != null">{{ props.text }}</span></button>
 </template>
 
 <script lang="ts" setup>

@@ -3,12 +3,12 @@
   <div class="input-wrapper">
     <InputOutlined
       type="email"
-      placeholder="E-Mail"
+      label="E-Mail"
       v-model="loginData.email"
     />
     <InputOutlined
       type="password"
-      placeholder="Passwort"
+      label="Passwort"
       v-model="loginData.password"
     />
   </div>
@@ -17,13 +17,22 @@
       :text="$t('register')"
       @click="console.log('Registrieren')"
     />
-    <ButtonPrimary :text="$t('login')" icon="login" @click="handleSubmit()" />
+    <ButtonPrimary @click="handleSubmit()" :data="loginButton"/>
   </div>
 </template>
 
 <script lang="ts" setup>
 definePageMeta({
   layout: "centered",
+});
+
+const submitted = ref(false);
+
+const loginButton = ref<ButtonDataRef>({
+  text: "Login",
+  loading: submitted,
+  icon: "login",
+  disabled: submitted,
 });
 
 const { $api } = useNuxtApp();
@@ -38,6 +47,7 @@ const loginData = reactive<Credentials>({
 
 async function handleSubmit(): Promise<void> {
   try {
+    submitted.value = true;
     const credentials: Credentials = {
       email: loginData.email,
       password: loginData.password,
@@ -45,6 +55,7 @@ async function handleSubmit(): Promise<void> {
     };
     const response: SessionToken = await $api.auth.login(credentials);
     session.setSession(response);
+    submitted.value = false;
   } catch (errorBody) {
     const data = errorBody as ApiError;
     AlertService.addAlert({
@@ -53,6 +64,7 @@ async function handleSubmit(): Promise<void> {
       type: "error",
       ttl: 5,
     } as Alert);
+    submitted.value = false;
   }
 }
 </script>
