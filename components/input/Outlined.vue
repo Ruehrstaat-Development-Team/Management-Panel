@@ -52,11 +52,11 @@ input {
   border-radius: 12px;
   border: 3px solid transparent;
   padding: 5px 10px;
-  background: var(--background-200);
-  color: var(--text);
+  background: var(--color-surface-variant);
+  color: var(--color-on-surface-variant);
   transition-duration: var(--animation-time-s);
   transition-behavior: var(--easing-default);
-  transition-property: border;
+  transition-property: border, background, color;
   height: 25px;
   font-size: 16px;
   width: calc(100% - 26px);
@@ -64,7 +64,7 @@ input {
 
 input:focus {
   outline-style: none;
-  border: 3px solid var(--accent-500);
+  border: 3px solid var(--color-primary);
 }
 
 .placeholder{

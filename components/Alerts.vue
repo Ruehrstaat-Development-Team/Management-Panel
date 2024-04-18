@@ -12,7 +12,7 @@
           {{ $t("error") }}
         </h3>
         <ButtonIcon
-          :icon="'close'"
+          :data="closeButtonData"
           @click="alert_service?.removeAlert(alert)"
           class="icon-button"
         />
@@ -39,6 +39,13 @@ const props = defineProps({
     type: Array as PropType<Alert[]>,
     default: [],
   },
+});
+
+const closeButtonData = ref<ButtonData>({
+  icon: "close",
+  text: undefined,
+  loading: ref(false),
+  disabled: ref(false),
 });
 
 function onBeforeEnter(el: Element) {
@@ -103,7 +110,6 @@ function onLeave(el: Element, done: gsap.Callback | undefined) {
     overflow: hidden;
 
     .icon-button {
-      color: var(--text-on-error);
       position: absolute;
       top: 10px;
       right: 10px;
@@ -127,26 +133,52 @@ function onLeave(el: Element, done: gsap.Callback | undefined) {
 
       .progress {
         height: 100%;
-        background: var(--error-100);
       }
     }
   }
 
   .alert-success {
-    background: var(--success);
+    background: var(--color-success);
+    color: var(--color-on-success);
+    .progress {
+        background: var(--color-success-accent);
+    }
+    .icon-button {
+      color: var(--color-on-success);
+    }
   }
 
   .alert-error {
-    background: var(--error);
-    color: var(--text-on-error);
+    background: var(--color-error);
+    color: var(--color-on-error);
+    .progress {
+        background: var(--color-error-accent);
+    }
+    .icon-button {
+      color: var(--color-on-error);
+    }
   }
 
   .alert-warning {
-    background: var(--warning);
+    background: var(--color-warning);
+    color: var(--color-on-warning);
+    .progress {
+        background: var(--color-warning-accent);
+    }
+    .icon-button {
+      color: var(--color-on-warning);
+    }
   }
 
   .alert-info {
-    background: var(--info);
+    background: var(--color-info);
+    color: var(--color-on-info);
+    .progress {
+        background: var(--color-info-accent);
+    }
+    .icon-button {
+      color: var(--color-on-info);
+    }
   }
 }
 </style>

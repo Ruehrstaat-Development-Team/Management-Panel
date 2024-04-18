@@ -1,22 +1,19 @@
 <template>
-  <button @click="props.onClick()"><span v-if="props.icon != null" class="material-symbols-rounded">{{ props.icon }}</span><span v-if="props.text != null">{{ props.text }}</span></button>
+  <button @click="click"><span v-if="props.data.icon != null" class="material-symbols-rounded">{{ props.data.icon }}</span><span v-if="props.data.text != null">{{ props.data.text }}</span></button>
 </template>
 
 <script lang="ts" setup>
 const props = defineProps({
-  text: {
-    type: String,
-    required: false,
-  },
-  icon: {
-    type: String,
-    required: false,
-  },
-  onClick: {
-    type: Function,
+  data: {
+    type: Object as PropType<ButtonDataInternal>,
     required: true,
   },
 });
+
+const emit = defineEmits(["click"]);
+const click = () => {
+  emit("click");
+};
 </script>
 
 <style>

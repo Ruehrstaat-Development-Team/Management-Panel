@@ -36,10 +36,10 @@ const flexTransition = computed(() =>
 button {
   font-size: var(--font-size-s);
 
-  background: var(--color-primary);
-  color: var(--color-on-primary);
+  background: var(--color-secondary);
+  color: var(--color-on-secondary);
 
-  border: 2px solid var(--color-primary);
+  border: 2px solid var(--color-secondary);
   border-radius: 50px;
 
   padding: 10px 20px;
@@ -56,10 +56,10 @@ button {
     width: var(--font-size-m);
     overflow: hidden;
   }
-
+  
   .flex-enter-active,
   .flex-leave-active {
-    transition-property: max-width, border;
+    transition-property: border, max-width;
     transition-timing-function: var(--easing-decelerate);
     transition-duration: var(--animation-time-xs);
   }
@@ -67,31 +67,31 @@ button {
   .flex-enter-from,
   .flex-leave-to {
     max-width: 0 !important;
-    border: 0px solid var(--color-on-primary) !important;
+    border: 0px solid var(--color-on-secondary) !important;
   }
 
   .loader-spinner {
-    border: 2px solid var(--color-on-primary);
+    border: 2px solid var(--color-on-secondary);
   }
 }
 
 button:hover {
-  background: var(--color-primary-hover);
-  color: var(--color-on-primary-hover);
-  border: 2px solid var(--color-primary-hover);
+  background: var(--color-secondary-hover);
+  color: var(--color-on-secondary-hover);
+  border: 2px solid var(--color-secondary-hover);
 
   cursor: pointer;
 }
 
 button:disabled {
-  background: var(--color-primary-disabled);
-  color: var(--color-on-primary-disabled);
-  border: 2px solid var(--color-primary-disabled);
-  
+  background: var(--color-secondary-disabled);
+  color: var(--color-on-secondary-disabled);
+  border: 2px solid var(--color-secondary-disabled);
+
   cursor: progress;
 
   .loader-spinner {
-    border-color: var(--color-on-primary-disabled);
+    border-color: var(--color-on-secondary-disabled);
   }
 }
 </style>

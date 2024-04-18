@@ -14,7 +14,7 @@
   </div>
   <div class="button-wrapper">
     <ButtonOutlined
-      :text="$t('register')"
+      :data="registerButton"
       @click="console.log('Registrieren')"
     />
     <ButtonPrimary @click="handleSubmit()" :data="loginButton"/>
@@ -28,16 +28,23 @@ definePageMeta({
 
 const submitted = ref(false);
 
-const loginButton = ref<ButtonDataRef>({
-  text: "Login",
+const loginButton = ref<ButtonData>({
+  text: "login",
   loading: submitted,
   icon: "login",
   disabled: submitted,
 });
 
+const registerButton = ref<ButtonData>({
+  text: "register",
+  icon: undefined,
+  loading: ref(false),
+  disabled: submitted,
+});
+
 const { $api } = useNuxtApp();
 const session = useSession();
-const { alerts, AlertService } = useAlerts();
+const { AlertService } = useAlerts();
 
 const loginData = reactive<Credentials>({
   email: "",

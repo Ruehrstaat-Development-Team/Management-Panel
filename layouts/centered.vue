@@ -62,7 +62,7 @@ const { alerts, AlertService } = useAlerts();
     align-items: center;
     height: 100vh;
     .card {
-      background: var(--background-100);
+      background: var(--color-surface);
       border-radius: 15px;
       box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
       min-width: 500px;
@@ -107,7 +107,7 @@ const { alerts, AlertService } = useAlerts();
             align-items: center;
             padding: 10px;
             border-radius: 15px;
-            background: var(--background-100);
+            background: var(--color-surface);
             .theme-image {
               width: 100%;
               height: 100%;
@@ -133,11 +133,12 @@ const { alerts, AlertService } = useAlerts();
   top: 50px;
   right: 50px;
   select {
-    padding: 5px;
-    border-radius: 5px;
-    border: 1px solid var(--background-100);
-    background: var(--background-100);
-    color: var(--text-100);
+    padding: 5px 10px;
+    border-radius: 12px;
+    font-size: var(--font-size-s);
+    border: 1px solid var(--color-surface);
+    background: var(--color-surface);
+    color: var(--color-on-surface);
   }
 }
 
@@ -146,11 +147,12 @@ const { alerts, AlertService } = useAlerts();
   top: 50px;
   right: 150px;
   select {
-    padding: 5px;
-    border-radius: 5px;
-    border: 1px solid var(--background-100);
-    background: var(--background-100);
-    color: var(--text-100);
+    padding: 5px 10px;
+    border-radius: 12px;
+    font-size: var(--font-size-s);
+    border: 1px solid var(--color-surface);
+    background: var(--color-surface);
+    color: var(--color-on-surface);
   }
 }
 </style>

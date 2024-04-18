@@ -8,8 +8,8 @@ export default defineNuxtConfig({
     "@nuxtjs/i18n",
     "nuxt-viewport",
   ],
+  css: ["~/assets/css/main.scss","~/assets/css/variables.scss", "~/assets/css/components.scss"],
   //Global-Config
-  css: ["~/assets/css/main.scss", "~/assets/css/components.scss"],
   app: {
     head: {
       meta: [
