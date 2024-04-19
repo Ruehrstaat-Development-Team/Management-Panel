@@ -1,23 +1,15 @@
 <template>
   <h2>Ruehrstaat Squadron</h2>
   <div class="input-wrapper">
-    <InputOutlined
-      type="email"
-      label="E-Mail"
-      v-model="loginData.email"
-    />
-    <InputOutlined
-      type="password"
-      label="Passwort"
-      v-model="loginData.password"
-    />
+    <InputOutlined :data="emailInput" v-model="loginData.email" />
+    <InputOutlined :data="passwordInput" v-model="loginData.password" />
   </div>
   <div class="button-wrapper">
     <ButtonOutlined
       :data="registerButton"
       @click="console.log('Registrieren')"
     />
-    <ButtonPrimary @click="handleSubmit()" :data="loginButton"/>
+    <ButtonPrimary @click="handleSubmit()" :data="loginButton" />
   </div>
 </template>
 
@@ -29,17 +21,37 @@ definePageMeta({
 const submitted = ref(false);
 
 const loginButton = ref<ButtonData>({
-  text: "login",
+  text: ref("login"),
   loading: submitted,
-  icon: "login",
+  icon: ref("login"),
   disabled: submitted,
 });
 
 const registerButton = ref<ButtonData>({
-  text: "register",
-  icon: undefined,
+  text: ref("register"),
+  icon: ref(undefined),
   loading: ref(false),
   disabled: submitted,
+});
+
+const emailInput = ref<InputData>({
+  type: ref("email"),
+  label: ref("email"),
+  placeholder: ref("mailexample"),
+  error: ref(undefined),
+  disabled: submitted,
+  loading: submitted,
+  button: ref(undefined),
+});
+
+const passwordInput = ref<InputData>({
+  type: ref("password"),
+  label: ref("password"),
+  placeholder: ref(undefined),
+  error: ref(undefined),
+  disabled: submitted,
+  loading: submitted,
+  button: ref(undefined),
 });
 
 const { $api } = useNuxtApp();
@@ -99,3 +111,4 @@ h2 {
   }
 }
 </style>
+

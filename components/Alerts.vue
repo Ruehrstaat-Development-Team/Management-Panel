@@ -14,7 +14,6 @@
         <ButtonIcon
           :data="closeButtonData"
           @click="alert_service?.removeAlert(alert)"
-          class="icon-button"
         />
         <span class="alert-message">{{ $t(alert.message) }}</span>
         <div class="alert-countdown">
@@ -109,7 +108,7 @@ function onLeave(el: Element, done: gsap.Callback | undefined) {
     position: relative;
     overflow: hidden;
 
-    .icon-button {
+    .button-icon {
       position: absolute;
       top: 10px;
       right: 10px;
@@ -143,8 +142,9 @@ function onLeave(el: Element, done: gsap.Callback | undefined) {
     .progress {
         background: var(--color-success-accent);
     }
-    .icon-button {
+    .button-icon {
       color: var(--color-on-success);
+      border-color: var(--color-on-success);
     }
   }
 
@@ -154,8 +154,9 @@ function onLeave(el: Element, done: gsap.Callback | undefined) {
     .progress {
         background: var(--color-error-accent);
     }
-    .icon-button {
+    .button-icon {
       color: var(--color-on-error);
+      border-color: var(--color-on-error);
     }
   }
 
@@ -165,8 +166,9 @@ function onLeave(el: Element, done: gsap.Callback | undefined) {
     .progress {
         background: var(--color-warning-accent);
     }
-    .icon-button {
+    .button-icon {
       color: var(--color-on-warning);
+      border-color: var(--color-on-warning);
     }
   }
 
@@ -176,8 +178,9 @@ function onLeave(el: Element, done: gsap.Callback | undefined) {
     .progress {
         background: var(--color-info-accent);
     }
-    .icon-button {
+    .button-icon {
       color: var(--color-on-info);
+      border-color: var(--color-on-info);
     }
   }
 }

@@ -1,12 +1,12 @@
 <template>
-  <button @click="click" :disabled="props.data.disabled">
+  <button @click="click" :disabled="props.data.disabled" class="button-primary">
     <span
       v-if="props.data.icon != undefined && !props.data.loading"
       class="material-symbols-rounded"
       >{{ props.data.icon }}</span
     >
     <Transition :name="flexTransition" :css="props.data.icon == undefined">
-      <span class="loader-spinner loader-spinner" v-if="props.data.loading"></span>
+      <span class="loader-spinner" v-if="props.data.loading"></span>
     </Transition>
     <span v-if="props.data.text != null" class="text">{{
       $t(props.data.text)

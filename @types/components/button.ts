@@ -1,6 +1,6 @@
 type ButtonData = {
-  text: string | undefined;
-  icon: string | undefined;
+  text: Ref<string | undefined>;
+  icon: Ref<string | undefined>;
   disabled: Ref<boolean | undefined>;
   loading: Ref<boolean | undefined>;
 };
