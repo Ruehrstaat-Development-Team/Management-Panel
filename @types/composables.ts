@@ -1,8 +1,7 @@
 type Alert = {
     id: string;
-    message: string;
     title: string;
-    error_code: string | null;
+    code: string | null;
     type: string;
     ttl: number;
     progress: number;

@@ -20,11 +20,13 @@ export const useSession = () => {
       path: "/",
       secure: true,
       expires: new Date(token.expiresAt * 1000),
+      sameSite: "strict",
     });
     session_expiresAt = useCookie("session_expires", {
       path: "/",
       secure: true,
       expires: new Date(token.expiresAt * 1000),
+      sameSite: "strict",
     });
     session_token.value = token.token;
     session_expiresAt.value = new Date(token.expiresAt * 1000).toISOString();

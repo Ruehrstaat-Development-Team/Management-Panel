@@ -3,6 +3,7 @@ import type { $Fetch, FetchOptions } from "ofetch";
 class HttpFactory {
   private $fetch: $Fetch;
   private session = useSession();
+  protected alerts = useAlerts();
 
   constructor(fetcher: $Fetch) {
     this.$fetch = fetcher;
@@ -15,26 +16,16 @@ class HttpFactory {
   ): Promise<T> {
     if (authenticated) {
       await this.checkAndRefreshSession();
-      return await this.$fetch(url, {
-        method: "GET",
-        ...options,
-        headers: { Authorization: `Bearer ${this.session.token}` },
-      }).catch((error) => {
-        if (error.data) {
-          throw error.data;
-        }
-        throw error;
-      });
-    } else {
-      return await this.$fetch(url, { method: "GET", ...options }).catch(
-        (error) => {
-          if (error.data) {
-            throw error.data;
-          }
-          throw error;
-        }
-      );
     }
+    return await this.$fetch(url, {
+      method: "GET",
+      ...options,
+      headers: authenticated
+        ? { Authorization: `Bearer ${this.session.token}` }
+        : undefined,
+    }).catch((error) => {
+      this.handleError(error);
+    });
   }
 
   protected async post<T>(
@@ -45,29 +36,17 @@ class HttpFactory {
   ): Promise<T> {
     if (authenticated) {
       await this.checkAndRefreshSession();
-      return await this.$fetch(url, {
-        method: "POST",
-        body: JSON.stringify(data),
-        ...options,
-        headers: { Authorization: `Bearer ${this.session.token}` },
-      }).catch((error) => {
-        if(error.data){
-          throw error.data;
-        }
-        throw error;
-      });
-    } else {
-      return await this.$fetch(url, {
-        method: "POST",
-        body: JSON.stringify(data),
-        ...options,
-      }).catch((error) => {
-        if (error.data) {
-          throw error.data;
-        }
-        throw error;
-      });
     }
+    return await this.$fetch(url, {
+      method: "POST",
+      body: JSON.stringify(data),
+      ...options,
+      headers: authenticated
+        ? { Authorization: `Bearer ${this.session.token}` }
+        : undefined,
+    }).catch((error) => {
+      this.handleError(error);
+    });
   }
 
   protected async put<T>(
@@ -78,58 +57,38 @@ class HttpFactory {
   ): Promise<T> {
     if (authenticated) {
       await this.checkAndRefreshSession();
-      return await this.$fetch(url, {
-        method: "PUT",
-        body: JSON.stringify(data),
-        ...options,
-        headers: { Authorization: `Bearer ${this.session.token}` },
-      }).catch((error) => {
-        if (error.data) {
-          throw error.data;
-        }
-        throw error;
-      });
-    } else {
-      return await this.$fetch(url, {
-        method: "PUT",
-        body: JSON.stringify(data),
-        ...options,
-      }).catch((error) => {
-        if (error.data) {
-          throw error.data;
-        }
-        throw error;
-      });
     }
+    return await this.$fetch(url, {
+      method: "PUT",
+      body: JSON.stringify(data),
+      ...options,
+      headers: authenticated
+        ? { Authorization: `Bearer ${this.session.token}` }
+        : undefined,
+    }).catch((error) => {
+      this.handleError(error);
+    });
   }
 
   protected async delete<T>(
     url: string,
+    data: object | null,
     authenticated: boolean = true,
     options?: object
   ): Promise<T> {
     if (authenticated) {
       await this.checkAndRefreshSession();
-      return await this.$fetch(url, {
-        method: "DELETE",
-        ...options,
-        headers: { Authorization: `Bearer ${this.session.token}` },
-      }).catch((error) => {
-        if (error.data) {
-          throw error.data;
-        }
-        throw error;
-      });
-    } else {
-      return await this.$fetch(url, { method: "DELETE", ...options }).catch(
-        (error) => {
-          if (error.data) {
-            throw error.data;
-          }
-          throw error;
-        }
-      );
     }
+    return await this.$fetch(url, {
+      method: "DELETE",
+      body: JSON.stringify(data),
+      ...options,
+      headers: authenticated
+        ? { Authorization: `Bearer ${this.session.token}` }
+        : undefined,
+    }).catch((error) => {
+      this.handleError(error);
+    });
   }
 
   protected async patch<T>(
@@ -138,32 +97,19 @@ class HttpFactory {
     authenticated: boolean = true,
     options?: object
   ): Promise<T> {
-    if(authenticated) {
+    if (authenticated) {
       await this.checkAndRefreshSession();
-      return await this.$fetch(url, {
-        method: "PATCH",
-        body: data != null ? JSON.stringify(data) : undefined,
-        ...options,
-        headers: { Authorization: `Bearer ${this.session.token}` },
-      }).catch((error) => {
-        if (error.data) {
-          throw error.data;
-        }
-        throw error;
-      });
     }
-    else{
-      return await this.$fetch(url, {
-        method: "PATCH",
-        body: data != null ? JSON.stringify(data) : undefined,
-        ...options,
-      }).catch((error) => {
-        if (error.data) {
-          throw error.data;
-        }
-        throw error;
-      });
-    }
+    return await this.$fetch(url, {
+      method: "PATCH",
+      body: JSON.stringify(data),
+      ...options,
+      headers: authenticated
+        ? { Authorization: `Bearer ${this.session.token}` }
+        : undefined,
+    }).catch((error) => {
+      this.handleError(error);
+    });
   }
 
   protected async head<T>(
@@ -171,30 +117,18 @@ class HttpFactory {
     authenticated: boolean = true,
     options?: object
   ): Promise<T> {
-    if(authenticated) {
+    if (authenticated) {
       await this.checkAndRefreshSession();
-      return await this.$fetch(url, {
-        method: "HEAD",
-        ...options,
-        headers: { Authorization: `Bearer ${this.session.token}` },
-      }).catch((error) => {
-        if (error.data) {
-          throw error.data;
-        }
-        throw error;
-      });
     }
-    else{
-      return await this.$fetch(url, {
-        method: "HEAD",
-        ...options,
-      }).catch((error) => {
-        if (error.data) {
-          throw error.data;
-        }
-        throw error;
-      });
-    }
+    return await this.$fetch(url, {
+      method: "HEAD",
+      ...options,
+      headers: authenticated
+        ? { Authorization: `Bearer ${this.session.token}` }
+        : undefined,
+    }).catch((error) => {
+      this.handleError(error);
+    });
   }
 
   private async checkAndRefreshSession(): Promise<void> {
@@ -207,6 +141,20 @@ class HttpFactory {
         false
       );
       this.session.setSession(newToken);
+    }
+  }
+
+  private async handleError(error: any): Promise<void> {
+    if (error.data) {
+      var err = error.data as RstApiError;
+      this.alerts.AlertService.addAlert({
+        code: err.code,
+        title: "error-title",
+        type: "error",
+      } as Alert);
+      throw null;
+    } else {
+      throw error;
     }
   }
 }

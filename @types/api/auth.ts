@@ -9,6 +9,8 @@ type SessionToken = {
     expiresAt: number;
 }
 
-type ApiError = {
+type RstApiError = {
     error: string;
+    code: string;
+    name: string;
 }

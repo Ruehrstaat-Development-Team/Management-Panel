@@ -17,7 +17,7 @@
 <script lang="ts" setup>
 const props = defineProps({
   data: {
-    type: Object as PropType<ButtonDataInternal>,
+    type: Object as PropType<ButtonData>,
     required: true,
   },
 });

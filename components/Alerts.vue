@@ -8,8 +8,8 @@
         :key="alert.id"
       >
         <h3 class="alert-title">
-          <span v-if="alert.error_code">{{ alert.error_code }} |</span>
-          {{ $t("error") }}
+          <span v-if="alert.code">{{ alert.code }} |</span>
+          {{ $t(alert.title) }}
         </h3>
         <ButtonIcon
           :data="closeButtonData"
@@ -40,11 +40,12 @@ const props = defineProps({
   },
 });
 
-const closeButtonData = ref<ButtonData>({
+const closeButtonData: ButtonData = reactive({
   icon: "close",
   text: undefined,
-  loading: ref(false),
-  disabled: ref(false),
+  loading: false,
+  disabled: false,
+  tooltip: "close",
 });
 
 function onBeforeEnter(el: Element) {

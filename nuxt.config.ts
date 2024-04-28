@@ -7,8 +7,13 @@ export default defineNuxtConfig({
     "@nuxt/image",
     "@nuxtjs/i18n",
     "nuxt-viewport",
+    "floating-vue/nuxt",
   ],
-  css: ["~/assets/css/main.scss","~/assets/css/variables.scss", "~/assets/css/components.scss"],
+  css: [
+    "~/assets/css/main.scss",
+    "~/assets/css/variables.scss",
+    "~/assets/css/components.scss",
+  ],
   //Global-Config
   app: {
     head: {
