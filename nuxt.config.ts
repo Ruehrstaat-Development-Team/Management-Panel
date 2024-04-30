@@ -2,9 +2,19 @@ import { sentryVitePlugin } from "@sentry/vite-plugin";
 import { defineNuxtConfig } from "nuxt/config";
 const path = require("path");
 export default defineNuxtConfig({
-  modules: ["@nuxtjs/color-mode", "@nuxtjs/device", "@nuxt/image"],
+  modules: [
+    "@nuxtjs/color-mode",
+    "@nuxt/image",
+    "@nuxtjs/i18n",
+    "nuxt-viewport",
+    "floating-vue/nuxt",
+  ],
+  css: [
+    "~/assets/css/main.scss",
+    "~/assets/css/variables.scss",
+    "~/assets/css/components.scss",
+  ],
   //Global-Config
-  css: ["~/assets/css/main.scss"],
   app: {
     head: {
       meta: [
@@ -30,6 +40,31 @@ export default defineNuxtConfig({
     preference: "system",
     fallback: "dark",
   },
+  i18n: {
+    strategy: "no_prefix",
+    detectBrowserLanguage: {
+      useCookie: true,
+      cookieKey: "i18n_redirected",
+      alwaysRedirect: true,
+      redirectOn: "root",
+    },
+    langDir: "lang/",
+    locales: [
+      {
+        code: "en",
+        name: "English",
+        iso: "en-US",
+        file: "en.ts",
+      },
+      {
+        code: "de",
+        name: "Deutsch",
+        iso: "de-DE",
+        file: "de.ts",
+      },
+    ],
+    defaultLocale: "en",
+  },
   runtimeConfig: {
     public: {
       // Config within public will be also exposed to the client
@@ -45,6 +80,7 @@ export default defineNuxtConfig({
       ),
       APP_VERSION: JSON.stringify(require("./package.json").version),
       APP_ENVIRONMENT: process.env.NODE_ENV,
+      API_BASE_URL: process.env.API_BASE_URL,
     },
   },
   sourcemap: true,

@@ -96,6 +96,7 @@ const toggleExpanded = () => {
     height: 0px;
     opacity: 0;
     margin: 0;
+    pointer-events: none;
   }
 
   .navigation-rail-title-text{
