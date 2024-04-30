@@ -1,0 +1,198 @@
+/* COLORS */
+
+:root.light-mode {
+  /* Accent Colors */
+  --color-primary: #9d56cd;
+  --color-on-primary: #ffffff;
+
+  --color-primary-hover: #8c45bc;
+  --color-on-primary-hover: #eeeeee;
+
+  --color-primary-disabled: #9f8ca5;
+  --color-on-primary-disabled: #ffffff;
+
+  --color-secondary: #cecb30;
+  --color-on-secondary: #1b190e;
+
+  --color-secondary-hover: #bdba20;
+  --color-on-secondary-hover: #0a080d;
+
+  --color-secondary-disabled: #bbbbbb;
+  --color-on-secondary-disabled: #1b190e;
+
+  /* Background Colors */
+
+  --color-background: #f6f0fd;
+  --color-on-background: #1d1b1e;
+
+  --color-background-hover: #e5e0ec;
+  --color-on-background-hover: #0c0a0d;
+
+  --color-background-disabled: #f0e9f9;
+  --color-on-background-disabled: #1d1b1e;
+
+  --color-surface: #e9dbfc;
+  --color-on-surface: #1d1b1e;
+
+  --color-surface-hover: #d8caeb;
+  --color-on-surface-hover: #0c0a0d;
+
+  --color-surface-disabled: #e9dbfc;
+  --color-on-surface-disabled: #4d4d4d;
+
+  --color-surface-variant: #dec8fc;
+  --color-on-surface-variant: #0d0c0e;
+
+  --color-surface-variant-hover: #cdb7eb;
+  --color-on-surface-variant-hover: #0c0a0d;
+
+  --color-surface-variant-disabled: #f0e9f9;
+  --color-on-surface-variant-disabled: #89818f;
+
+  /* Signal Colors */
+
+  --color-error: #ce1922;
+  --color-on-error: #efefef;
+  --color-error-accent: #960000;
+
+  --color-success: #2e7d32;
+  --color-on-success: #ffffff;
+  --color-success-accent: #004d0d;
+
+  --color-warning: #ffc107;
+  --color-on-warning: #010101;
+  --color-warning-accent: #d69200;
+
+  --color-info: #2078c0;
+  --color-on-info: #ffffff;
+  --color-info-accent: #004b88;
+}
+:root.dark-mode {
+  /* Accent Colors */
+  --color-primary: #7f43a7;
+  --color-on-primary: #ffffff;
+
+  --color-primary-hover: #6e3296;
+  --color-on-primary-hover: #eeeeee;
+
+  --color-primary-disabled: #5f5864;
+  --color-on-primary-disabled: #ffffff;
+
+  --color-secondary: #b8b514;
+  --color-on-secondary: #000000;
+
+  --color-secondary-hover: #a7a403;
+  --color-on-secondary-hover: #0a080d;
+
+  --color-secondary-disabled: #969483;
+  --color-on-secondary-disabled: #000000;
+
+  /* Background Colors */
+
+  --color-background: #120e18;
+  --color-on-background: #e7e0e5;
+
+  --color-background-hover: #010d07;
+  --color-on-background-hover: #d6d0d4;
+
+  --color-background-disabled: #1d1b1e;
+  --color-on-background-disabled: #4d4d4d;
+
+  --color-surface: #282033;
+  --color-on-surface: #e7e0e5;
+
+  --color-surface-hover: #171022;
+  --color-on-surface-hover: #d6d0d4;
+
+  --color-surface-disabled: #282033;
+  --color-on-surface-disabled: #9e9e9e;
+
+  --color-surface-variant: #524269;
+  --color-on-surface-variant: #fefefe;
+
+  --color-surface-variant-hover: #413158;
+  --color-on-surface-variant-hover: #ededed;
+
+  --color-surface-variant-disabled: #433e49;
+  --color-on-surface-variant-disabled: #a5a5a5;
+
+  /* Signal Colors */
+
+  --color-error: #bb151e;
+  --color-on-error: #efefef;
+  --color-error-accent: #860202;
+
+  --color-success: #2e7d32;
+  --color-on-success: #ffffff;
+  --color-success-accent: #004d0d;
+
+  --color-warning: #e4b118;
+  --color-on-warning: #010101;
+  --color-warning-accent: #a87300;
+
+  --color-info: #2078c0;
+  --color-on-info: #ffffff;
+  --color-info-accent: #004b88;
+}
+
+/* TYPOGRAPHY */
+
+:root {
+  --font-family: "Montserrat", sans-serif;
+  --font-size-xxs: 12px;
+  --font-size-xs: 14px;
+  --font-size-s: 16px;
+  --font-size-m: 19px;
+  --font-size-l: 22px;
+  --font-size-xl: 26px;
+  --font-size-xxl: 32px;
+  --font-size-xxxl: 40px;
+  --font-size-xxxxl: 48px;
+  --font-size-xxxxxl: 64px;
+  --font-weight-light: 300;
+  --font-weight-regular: 400;
+  --font-weight-medium: 500;
+  --font-weight-bold: 700;
+}
+
+/* EASING */
+
+:root {
+  --animation-time-xxs: 0.05s;
+  --animation-time-xs: 0.1s;
+  --animation-time-s: 0.2s;
+  --animation-time-m: 0.4s;
+  --animation-time-l: 0.6s;
+  --animation-time-xl: 0.8s;
+  --animation-time-xxl: 1s;
+
+  --easing-default: linear(
+    0,
+    0.00245 1.753%,
+    0.00994 3.55%,
+    0.03415 6.402%,
+    0.07376 9.061%,
+    0.12808 11.414%,
+    0.19399 13.366%,
+    0.27138 14.974%,
+    0.34403 16.052%,
+    0.54434 18.338%,
+    0.60689 19.389%,
+    0.66036 20.609%,
+    0.71671 22.4%,
+    0.76532 24.589%,
+    0.80828 27.285%,
+    0.84475 30.42%,
+    0.88332 35.056%,
+    0.91554 40.622%,
+    0.94208 47.239%,
+    0.96327 54.986%,
+    0.9795 64.011%,
+    0.99095 74.434%,
+    0.99774 86.373%,
+    1
+  );
+
+  --easing-decelerate: cubic-bezier(0.05, 0.7, 0.1, 1);
+  --easing-accelerate: cubic-bezier(0.3, 0, 0.8, 0.15);
+}
