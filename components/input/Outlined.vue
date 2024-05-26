@@ -1,42 +1,55 @@
 <template>
-  <div class="input-text" :class="{ error: $props.data.error }">
+  <div class="input-text" :class="{ error: $props.error }">
     <input
-      :type="data.type.value"
       @focus="focus()"
       @blur="blur()"
+      @change="focus()"
+      @input="focus()"
       v-model="model"
-      :placeholder="data.placeholder.value ? $t(data.placeholder.value) : ''"
-      :disabled="data.disabled.value"
-      :name="data.label.value"
-      :autocomplete="data.autocomplete.value"
+      v-bind="$attrs"
     />
-    <span class="label" :class="{ focused: focused }" v-if="data.label.value">{{
-      $t(data.label.value)
+    <span class="label" :class="{ focused: focused }" v-if="$props.label">{{
+      $t($props.label)
     }}</span>
     <ButtonIcon
-      v-if="data.button.value && !data.loading.value"
-      :data="data.button.value"
+      v-if="$props.button && !$props.loading"
+      :data="$props.button.value"
       :type="'button'"
       @click="click"
     />
-    <span class="loader-spinner" v-if="data.loading.value"></span>
-    <span class="error-text" v-if="data.error.value != null">{{
-      $t(data.error.value.toString())
+    <span class="loader-spinner" v-if="$props.loading"></span>
+    <span class="error-text" v-if="$props.error != null">{{
+      $t($props.error)
     }}</span>
   </div>
 </template>
 
 <script lang="ts" setup>
-import type { PropType } from "vue";
 
-const props = defineProps({
-  data: {
-    type: Object as PropType<InputData>,
-    required: true,
-  },
-});
+const { hooks } = useNuxtApp();
 
-const data = toRefs(props.data);
+defineProps({
+    error: {
+      type: String,
+      default: null,
+      required: false,
+    },
+    label: {
+      type: String,
+      default: null,
+      required: false,
+    },
+    loading: {
+      type: Boolean,
+      default: false,
+      required: false,
+    },
+    button: {
+      type: Object,
+      default: null,
+      required: false,
+    },
+})
 
 const model = defineModel({ required: true, type: String });
 
@@ -57,7 +70,7 @@ function blur() {
   emit("blur");
 }
 
-onMounted(() => {
+hooks.hookOnce("page:loading:end", () => {
   if (model.value != "") {
     focused.value = true;
   }
@@ -150,7 +163,6 @@ onMounted(() => {
   .error-text {
     color: var(--color-error);
     border-radius: 8px;
-    //padding: 1px 10px 2px 10px;
     font-size: var(--font-size-xs);
     margin: 5px 0 0 10px;
     position: absolute;

@@ -9,8 +9,6 @@
           :src="src"
           @load="loaded = true"
           class="theme-image"
-          v-if="!$colorMode.unknown"
-          v-show="loaded"
         />
       </Transition>
     </ClientOnly>

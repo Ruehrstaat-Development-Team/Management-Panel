@@ -1,10 +1,10 @@
 <template>
   <button @click="click" :disabled="data.disabled.value" class="button-secondary" :type="$props.type">
-    <span
+    <nuxt-icon
       v-if="data.icon.value != undefined && !data.loading.value"
       class="material-symbols-rounded"
-      >{{ data.icon.value }}</span
-    >
+      :name="data.icon.value"
+      />
     <Transition :name="flexTransition" :css="data.icon.value == undefined">
       <span class="loader-spinner" v-if="data.loading.value"></span>
     </Transition>
@@ -25,7 +25,7 @@ const props = defineProps({
   type: {
     type: String as PropType<"button" | "submit" | "reset">,
     default: "button",
-    required: true,
+    required: false,
   },
 });
 

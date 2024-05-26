@@ -9,6 +9,10 @@ type SessionToken = {
     expiresAt: number;
 }
 
+type QuickLoginToken = {
+    token: string;
+}
+
 type RstApiError = {
     error: string;
     code: string;

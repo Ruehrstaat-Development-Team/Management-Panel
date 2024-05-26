@@ -1,10 +1,10 @@
 <template>
   <button @click="click" :disabled="props.data.disabled" class="button-outlined">
-    <span
-      v-if="props.data.icon != undefined && !props.data.loading"
+    <nuxt-icon
+      v-if="data.icon.value != undefined && !data.loading.value"
       class="material-symbols-rounded"
-      >{{ props.data.icon }}</span
-    >
+      :name="data.icon.value"
+      />
     <Transition :name="flexTransition" :css="props.data.icon == undefined">
       <span class="loader-spinner" v-if="props.data.loading"></span>
     </Transition>
@@ -20,7 +20,14 @@ const props = defineProps({
     type: Object as PropType<ButtonData>,
     required: true,
   },
+  type: {
+    type: String as PropType<"button" | "submit" | "reset">,
+    default: "button",
+    required: false,
+  },
 });
+
+const data = toRefs(props.data);
 
 const emit = defineEmits(["click"]);
 const click = () => {

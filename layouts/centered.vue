@@ -4,15 +4,15 @@
       <div class="header">
         <div class="header-background">
           <ThemeImage
-            dark_src="HeaderBackgroundDark.webp"
-            light_src="HeaderBackgroundLight.webp"
+            dark_src="/header-background-dark.webp"
+            light_src="/header-background-light.webp"
           />
         </div>
         <div class="header-icon-wrapper">
           <div class="header-icon">
             <ThemeImage
-              dark_src="LogoCleanDark.webp"
-              light_src="LogoCleanLight.webp"
+              dark_src="/logo-clean-dark.webp"
+              light_src="/logo-clean-light.webp"
             />
           </div>
         </div>
@@ -33,9 +33,9 @@
     </select>
   </div>
   <div class="locale-selector">
-    <select v-model="$i18n.locale">
-      <option value="de">Deutsch</option>
-      <option value="en">English</option>
+    <select :value="locale" @change="updateLocale">
+      <option value="de" :selected="locale == 'de'">Deutsch</option>
+      <option value="en" :selected="locale == 'en'">English</option>
     </select>
   </div>
   <Alerts :alert_service="AlertService" :alerts="alerts"/>
@@ -43,6 +43,10 @@
 
 <script lang="ts" setup>
 const { alerts, AlertService } = useAlerts();
+const { locale, setLocale } = useI18n();
+const updateLocale = (event: Event) => {
+  setLocale((event.target as HTMLSelectElement).value);
+};
 </script>
 <style lang="scss">
 //Mobile
