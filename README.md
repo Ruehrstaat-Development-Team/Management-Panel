@@ -1,10 +1,8 @@
-# Ruehrstaat Web Frontend
-
-## About
+# 🌐 Ruehrstaat Web Frontend
 
 This is the web frontend for the [Ruehrstaat](www.ruehrstaat.org) project. It is built with [Nuxt.js](https://nuxtjs.org/).
 
-## Setup
+## ⚙️ Setup
 
 Make sure to install the dependencies:
 
@@ -22,7 +20,7 @@ yarn install
 bun install
 ```
 
-## Development Server
+## 🖥️ Development Server
 
 Start the development server on `http://localhost:3000`:
 
@@ -40,7 +38,7 @@ yarn dev
 bun run dev
 ```
 
-## Production
+## 🏭 Production
 
 Build the application for production:
 
@@ -74,7 +72,7 @@ yarn preview
 bun run preview
 ```
 
-## Deployment
+## 📦 Deployment
 
 We deploy our application with static hosting via [Cloudflare Pages](https://pages.cloudflare.com/) with ServerSideRendering turned off. 
 

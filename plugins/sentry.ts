@@ -3,8 +3,7 @@ import * as Sentry from "@sentry/vue";
 
 async function lazyLoadSentryIntegrations(){
     if(!process.client) return;
-    const { Replay } = await import("@sentry/vue");
-    Sentry.addIntegration(new Replay({
+    Sentry.addIntegration(Sentry.replayIntegration({
         maskAllText: false,
         maskAllInputs: true,
         blockAllMedia: false
@@ -15,10 +14,7 @@ function getSentryIntegrations(){
     if(!process.client) return [];
 
     const router = useRouter();
-    const browserTracing = new Sentry.BrowserTracing({
-        routingInstrumentation: Sentry.vueRouterInstrumentation(router),
-        tracingOrigins: ["*"]
-    })
+    const browserTracing = Sentry.browserTracingIntegration({router})
     return [browserTracing];
 }
 

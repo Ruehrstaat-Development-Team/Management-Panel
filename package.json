@@ -28,7 +28,7 @@
     "@material/material-color-utilities": "^0.2.7",
     "@nuxtjs/color-mode": "^3.4.1",
     "@sentry/vite-plugin": "^2.16.1",
-    "@sentry/vue": "^7.112.2",
+    "@sentry/vue": "^8.7.0",
     "@vuelidate/core": "^2.0.3",
     "@vuelidate/validators": "^2.0.4",
     "floating-vue": "^5.2.2",
