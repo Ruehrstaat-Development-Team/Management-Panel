@@ -70,7 +70,6 @@ const updateLocale = (event: Event) => {
       border-radius: 15px;
       box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
       min-width: 500px;
-      overflow: hidden;
       transition-property: height, width;
       transition-duration: var(--animation-time-m);
       transition-timing-function: var(--easing-decelerate);
@@ -81,6 +80,7 @@ const updateLocale = (event: Event) => {
         min-width: 100%;
         overflow: hidden;
         position: relative;
+        border-radius: 15px;
 
         .theme-image {
           width: 100%;

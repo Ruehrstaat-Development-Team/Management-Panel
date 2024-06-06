@@ -2,6 +2,10 @@
 	<div
 		class="input-text"
 		:class="{ error: $props.errors != null && $props.errors.length > 0 }"
+		:style="{
+			'margin-bottom':
+				18 * ($props.errors ? $props.errors.length : 0) + 'px',
+		}"
 	>
 		<input
 			@focus="focus()"
@@ -14,8 +18,19 @@
 		<span class="label" :class="{ focused: focused }" v-if="$props.label">{{
 			$props.label
 		}}</span>
-		<slot />
-		<TransitionGroup name="fade">
+		<div class="input-outlined-slot-right">
+			<slot name="slot-right"/>
+		</div>
+		<div class="input-outlined-slot-left">
+			<slot name="slot-left"/>
+		</div>
+		<div class="input-outlined-slot-bottom">
+			<slot name="slot-bottom"/>
+		</div>
+		<div class="input-outlined-slot-top">
+			<slot name="slot-top"/>
+		</div>
+		<TransitionGroup name="fade" tag="div" class="error-wrapper">
 			<span
 				class="error-text"
 				v-for="error in $props.errors"
@@ -76,9 +91,12 @@ hooks.hookOnce("page:loading:end", () => {
 .input-text {
 	position: relative;
 	margin-top: 25px;
-	transition-property: margin;
+
+	transition-property: margin-bottom;
 	transition-duration: var(--animation-time-m);
 	transition-timing-function: var(--easing-decelerate);
+
+	margin-bottom: 0px;
 
 	.loader-spinner {
 		border: 2px solid var(--color-on-primary);
@@ -90,6 +108,8 @@ hooks.hookOnce("page:loading:end", () => {
 
 	input {
 		border-radius: 12px;
+		z-index: 1;
+		position: relative;
 		border: 3px solid transparent;
 		padding: 5px 35px 5px 10px;
 		background: var(--color-surface-variant);
@@ -133,6 +153,7 @@ hooks.hookOnce("page:loading:end", () => {
 
 	.label {
 		position: absolute;
+		z-index: 1;
 		top: 0;
 		left: 0;
 		padding: 12px 10px;
@@ -151,35 +172,64 @@ hooks.hookOnce("page:loading:end", () => {
 		font-size: var(--font-size-s);
 	}
 
-	.button-icon {
+	.input-outlined-slot-right {
+		z-index: 1;
 		position: absolute;
-		top: 3px;
-		right: 3px;
-		padding: 8px 7px 5px 7px;
-		color: var(--color-on-surface-variant);
-		border-radius: 12px;
+		right: 0;
+		top: 0;
+		bottom: 0;
 	}
 
-	.error-text {
-		color: var(--color-error);
-		font-size: var(--font-size-xs);
-		font-weight: var(--font-weight-bold);
-		margin: 2px 0 0 10px;
-		position: relative;
-		display: block;
-		max-height: 18px;
-		height: 18px;
-		transition-property: height, max-height, opacity, margin;
-		transition-duration: var(--animation-time-m);
-		transition-timing-function: var(--easing-decelerate);
+	.input-outlined-slot-left{
+		z-index: 1;
+		position: absolute;
+		left: 0;
+		top: 0;
+		bottom: 0;
 	}
 
-	.fade-enter-from,
-	.fade-leave-to {
-		max-height: 0px;
-		height: 0px;
-		opacity: 0;
-		margin: 0 0 0 10px;
+	.input-outlined-slot-bottom {
+		z-index: 2;
+		position: absolute;
+		top: 41px;
+		left: 0;
+		width: 100%;
+	}
+
+	.input-outlined-slot-top {
+		z-index: 2;
+		position: absolute;
+		bottom: 41px;
+		left: 0;
+		width: 100%;
+	}
+
+	.error-wrapper {
+		position: absolute;
+		bottom: -20px;
+		left: 0;
+		display: flex;
+		flex-direction: column;
+
+		.error-text {
+			color: var(--color-error);
+			font-size: var(--font-size-xs);
+			font-weight: var(--font-weight-bold);
+			margin: 0px 0 0 10px;
+			position: relative;
+			height: 18px;
+			transition-property: opacity transform;
+			transition-duration: var(--animation-time-m);
+			transition-timing-function: var(--easing-decelerate);
+		}
+		.fade-enter-from {
+			opacity: 0;
+			transform: translateY(-18px);
+		}
+		.fade-leave-to {
+			opacity: 0;
+			transform: translateY(18px);
+		}
 	}
 }
 

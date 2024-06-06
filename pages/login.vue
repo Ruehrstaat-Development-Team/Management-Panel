@@ -18,14 +18,19 @@
 				:label="$t('pages_login_password')"
 				:placeholder="$t('pages_login_password_placeholder')"
 				:disabled="submitted"
+				:errors="$v.password.$errors"
+				:error-prefix="'pages_login_error'"
 				type="password"
 				autocomplete="current-password"
 				@blur="$v.password.$touch"
 			>
+			<template v-slot:slot-right>
 				<ButtonIcon
+					id="toggle-password-visibility"
 					:data="passwordButton"
 					@click="passwordVisible = !passwordVisible"
 				/>
+			</template>
 			</InputOutlined>
 		</div>
 		<div class="button-wrapper">
@@ -66,7 +71,7 @@ const passwordVisible = ref(false);
 
 
 const loginButton: ButtonData = reactive({
-	text: "login",
+	text: "pages_login_login",
 	icon: "login",
 	loading: submitted,
 	disabled: submitted,
@@ -74,7 +79,7 @@ const loginButton: ButtonData = reactive({
 });
 
 const registerButton: ButtonData = reactive({
-	text: "register",
+	text: "pages_login_register",
 	icon: undefined,
 	loading: false,
 	disabled: submitted,
@@ -91,7 +96,7 @@ const passwordButton: ButtonData = reactive({
 	loading: false,
 	disabled: submitted,
 	tooltip: computed(() =>
-		passwordVisible.value ? "hide_password" : "show_password"
+		passwordVisible.value ? "pages_login_tooltip_hide_password" : "pages_login_tooltip_show_password"
 	),
 });
 
@@ -133,6 +138,13 @@ h2 {
 	display: flex;
 	flex-direction: column;
 	gap: 5px;
+	margin-bottom: 20px;
+
+	#toggle-password-visibility {
+		position: absolute;
+		right: 0;
+		top: 0;
+	}
 }
 
 .button-wrapper {
