@@ -92,6 +92,7 @@ export default defineNuxtConfig({
 			SENTRY_ERROR_REPLAY_SAMPLE_RATE: parseFloat(
 				process.env.SENTRY_ERROR_REPLAY_SAMPLE_RATE ?? "0"
 			),
+			SENTRY_ENABLED: process.env.SENTRY_ENABLED === "true",
 			APP_VERSION: JSON.stringify(require("./package.json").version),
 			APP_ENVIRONMENT: process.env.NODE_ENV,
 			API_BASE_URL: process.env.API_BASE_URL,

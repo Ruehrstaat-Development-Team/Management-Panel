@@ -1,41 +1,42 @@
 <template>
-  <button @click="click" :disabled="props.data.disabled" class="button-outlined">
+  <button class="button-outlined" v-bind="$attrs">
     <nuxt-icon
-      v-if="data.icon.value != undefined && !data.loading.value"
+      v-if="$props.icon != undefined && !$props.loading"
       class="material-symbols-rounded"
-      :name="data.icon.value"
+      :name="$props.icon"
       />
-    <Transition :name="flexTransition" :css="props.data.icon == undefined">
-      <span class="loader-spinner" v-if="props.data.loading"></span>
+    <Transition :name="flexTransition" :css="$props.icon == undefined">
+      <span class="loader-spinner" v-if="$props.loading"></span>
     </Transition>
-    <span v-if="props.data.text != null" class="text">{{
-      $t(props.data.text)
+    <span v-if="$props.text != null" class="text">{{
+      $props.text
     }}</span>
   </button>
 </template>
 
 <script lang="ts" setup>
-const props = defineProps({
-  data: {
-    type: Object as PropType<ButtonData>,
-    required: true,
-  },
-  type: {
-    type: String as PropType<"button" | "submit" | "reset">,
-    default: "button",
+
+
+var props = defineProps({
+  icon: {
+    type: String,
+    default: undefined,
     required: false,
   },
-});
-
-const data = toRefs(props.data);
-
-const emit = defineEmits(["click"]);
-const click = () => {
-  emit("click");
-};
+  loading: {
+    type: Boolean,
+    default: false,
+    required: false,
+  },
+  text: {
+    type: String,
+    default: undefined,
+    required: false,
+  }
+})
 
 const flexTransition = computed(() =>
-  props.data?.icon == undefined ? "flex" : undefined
+  props.icon == undefined ? "flex" : undefined
 );
 </script>
 

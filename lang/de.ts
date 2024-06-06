@@ -1,12 +1,14 @@
 export default {
     //#region General
     general_close: "Schließen",
+	general_or: "oder",
     //#endregion General
 	//#region Pages
 	//#region login
 	pages_login_login: "Anmelden",
 	pages_login_register: "Registrieren",
 	pages_login_email: "E-Mail",
+	pages_login_sso: "Mit Single Sign-On anmelden",
 	pages_login_email_placeholder: "mustermann{'@'}beispiel.de",
 	pages_login_password: "Passwort",
     pages_login_password_placeholder: "Passwort",

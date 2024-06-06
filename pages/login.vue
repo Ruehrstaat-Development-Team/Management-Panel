@@ -20,25 +20,48 @@
 				:disabled="submitted"
 				:errors="$v.password.$errors"
 				:error-prefix="'pages_login_error'"
-				type="password"
+				:type="passwordType"
 				autocomplete="current-password"
 				@blur="$v.password.$touch"
 			>
-			<template v-slot:slot-right>
-				<ButtonIcon
-					id="toggle-password-visibility"
-					:data="passwordButton"
-					@click="passwordVisible = !passwordVisible"
-				/>
-			</template>
+				<template v-slot:slot-right>
+					<ButtonIcon
+						id="toggle-password-visibility"
+						:icon="passwordVisibleIcon"
+						type="button"
+						@click="passwordVisible = !passwordVisible"
+						v-tooltip="$t(passwordVisibleTooltip)"
+					/>
+				</template>
 			</InputOutlined>
 		</div>
 		<div class="button-wrapper">
 			<ButtonOutlined
-				:data="registerButton"
+				:text="$t('pages_login_register')"
+				:disabled="submitted"
+				type="button"
 				@click="console.log('Registrieren')"
 			/>
-			<ButtonPrimary :data="loginButton" type="submit" />
+			<ButtonPrimary
+				:text="$t('pages_login_login')"
+				:loading="submitted"
+				:disabled="submitted"
+				icon="login"
+				type="submit"
+			/>
+			<div class="divider">
+				<div class="line"></div>
+				<div class="or">{{ $t("general_or") }}</div>
+				<div class="line"></div>
+			</div>
+			<ButtonOutlined
+				class="sso-button"
+				:text="$t('pages_login_sso')"
+				:disabled="submitted"
+				icon="passkey"
+				type="button"
+				@click="console.log('SSO')"
+			/>
 		</div>
 	</form>
 </template>
@@ -69,36 +92,19 @@ const $v = useVuelidate(rules, loginData);
 const submitted = ref(false);
 const passwordVisible = ref(false);
 
+const passwordVisibleIcon = computed(() =>
+	passwordVisible.value ? "visibility" : "visibility_off"
+);
 
-const loginButton: ButtonData = reactive({
-	text: "pages_login_login",
-	icon: "login",
-	loading: submitted,
-	disabled: submitted,
-	tooltip: undefined,
-});
+const passwordType = computed(() =>
+	passwordVisible.value ? "text" : "password"
+);
 
-const registerButton: ButtonData = reactive({
-	text: "pages_login_register",
-	icon: undefined,
-	loading: false,
-	disabled: submitted,
-	tooltip: undefined,
-});
-
-
-
-const passwordButton: ButtonData = reactive({
-	icon: computed(() =>
-		passwordVisible.value ? "visibility" : "visibility_off"
-	),
-	text: undefined,
-	loading: false,
-	disabled: submitted,
-	tooltip: computed(() =>
-		passwordVisible.value ? "pages_login_tooltip_hide_password" : "pages_login_tooltip_show_password"
-	),
-});
+const passwordVisibleTooltip = computed(() =>
+	passwordVisible.value
+		? "pages_login_tooltip_hide_password"
+		: "pages_login_tooltip_show_password"
+);
 
 const { $api } = useNuxtApp();
 const session = useSession();
@@ -122,7 +128,16 @@ async function handleSubmit(): Promise<void> {
 			password: loginData.password,
 			otp: loginData.otp,
 		};
-		const response: SessionToken = await $api.auth.login(credentials);
+		const response: SessionToken | void = await $api.auth
+			.login(credentials)
+			.catch(() => {
+				submitted.value = false;
+			})
+			.then(() => {
+				const route = useRoute();
+				const redirect = route.query.redirect as string;
+				navigateTo(redirect || "/");
+			});
 	} catch (errorBody) {
 		submitted.value = false;
 	}
@@ -148,13 +163,32 @@ h2 {
 }
 
 .button-wrapper {
-	display: flex;
-	justify-content: space-between;
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	align-items: center;
+	justify-content: stretch;
 	gap: 1rem;
 	width: 100%;
 
-	button {
-		width: 50%;
+	.divider {
+		display: grid;
+		grid-template-columns: 1fr auto 1fr;
+		align-items: center;
+		gap: 1rem;
+		margin: 0.25rem 20px;
+
+		.line {
+			border-top: 1px solid var(--color-on-surface-variant);
+		}
+
+		.or {
+			color: var(--color-on-surface-variant);
+		}
+		grid-column: 1 / span 2;
+	}
+
+	.sso-button {
+		grid-column: 1 / span 2;
 	}
 }
 </style>

@@ -1,43 +1,40 @@
 <template>
-  <button @click="click" :disabled="data.disabled.value" class="button-icon" v-tooltip="{ content: data.tooltip.value ? $t(data.tooltip.value) : '', noAutoFocus: true}" :type="$props.type">
+  <button class="button-icon" v-bind="$attrs">
     <nuxt-icon
-      v-if="data.icon.value != undefined && !data.loading.value"
+      v-if="$props.icon != undefined && !$props.loading"
       class="material-symbols-rounded"
-      :name="data.icon.value"
+      :name="$props.icon"
       />
-    <Transition :name="flexTransition" :css="data.icon.value == undefined">
-      <span class="loader-spinner" v-if="data.loading.value"></span>
+    <Transition :name="flexTransition" :css="$props.icon == undefined">
+      <span class="loader-spinner" v-if="$props.loading"></span>
     </Transition>
-    <span v-if="data.text.value != null" class="text">{{
-      $t(data.text.value)
+    <span v-if="$props.text != null" class="text">{{
+      $props.text
     }}</span>
   </button>
 </template>
 
 <script lang="ts" setup>
-import type { PropType } from 'vue';
-
-const props = defineProps({
-  data: {
-    type: Object as PropType<ButtonData>,
-    required: true,
-  },
-  type: {
-    type: String as PropType<"button" | "submit" | "reset">,
-    default: "button",
+var props = defineProps({
+  icon: {
+    type: String,
+    default: undefined,
     required: false,
   },
-});
-
-const data = toRefs(props.data);
-
-const emit = defineEmits(["click"]);
-const click = () => {
-  emit("click");
-};
+  loading: {
+    type: Boolean,
+    default: false,
+    required: false,
+  },
+  text: {
+    type: String,
+    default: undefined,
+    required: false,
+  }
+})
 
 const flexTransition = computed(() =>
-  data?.icon == undefined ? "flex" : undefined
+  props.icon == undefined ? "flex" : undefined
 );
 </script>
 
@@ -49,8 +46,9 @@ button {
   color: var(--color-on-surface-variant);
 
   border: none;
-
-  padding: 10px 20px;
+  border-radius: 12px;
+  padding: 11px 10px 6px 10px;
+  margin: 0px 0;
 
   box-shadow: none;
 
@@ -84,7 +82,7 @@ button {
 }
 
 button:hover {
-  background: var(--color-surface-hover);
+  backdrop-filter: brightness(0.9);
 
   cursor: pointer;
 }
