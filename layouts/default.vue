@@ -1,7 +1,10 @@
 <template>
-  <div>
-    <slot />
-  </div>
+  <SidebarProvider>
+    <NavigationSidebar />
+    <main class="w-full relative">
+      <slot />
+    </main>
+  </SidebarProvider>
 </template>
 
 <script lang="ts" setup>

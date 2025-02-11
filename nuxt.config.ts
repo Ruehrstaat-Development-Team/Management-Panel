@@ -8,7 +8,13 @@ export default defineNuxtConfig({
 		"shadcn-nuxt",
 		"@nuxtjs/color-mode",
 		"@sentry/nuxt/module",
+    "nuxt-lucide-icons",
 	],
+  app: {
+    head:{
+      link: [{ rel: "icon", type: "image/x-icon", href: "/favicon.webp" }],
+    }
+  },
 
 	//#region Module Configuration
 	shadcn: {
