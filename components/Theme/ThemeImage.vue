@@ -5,7 +5,7 @@
     </Transition>
     <ClientOnly>
       <Transition name="fade">
-        <img
+        <NuxtImg
           :src="src"
           @load="loaded = true"
           class="theme-image"
@@ -48,7 +48,6 @@ watch(src, () => {
 
 <style lang="scss" scoped>
 .theme-image-wrapper {
-  position: relative;
   .loader {
     position: absolute;
     height: 100%;

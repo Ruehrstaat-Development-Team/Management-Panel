@@ -8,5 +8,6 @@
     <NuxtLayout>
       <NuxtPage />
     </NuxtLayout>
+    <Toaster rich-colors/>
   </div>
 </template>

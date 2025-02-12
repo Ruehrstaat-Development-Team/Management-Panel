@@ -8,13 +8,17 @@ export default defineNuxtConfig({
 		"shadcn-nuxt",
 		"@nuxtjs/color-mode",
 		"@sentry/nuxt/module",
-    "nuxt-lucide-icons",
+		"nuxt-lucide-icons",
+		"@nuxt/image",
+		"@vee-validate/nuxt",
 	],
-  app: {
-    head:{
-      link: [{ rel: "icon", type: "image/x-icon", href: "/favicon.webp" }],
-    }
-  },
+	app: {
+		head: {
+			link: [
+				{ rel: "icon", type: "image/x-icon", href: "/favicon.webp" },
+			],
+		},
+	},
 
 	//#region Module Configuration
 	shadcn: {
@@ -39,6 +43,7 @@ export default defineNuxtConfig({
 			sentry: {
 				dsn: process.env.SENTRY_DSN,
 			},
+			API_BASE_URL: process.env.API_BASE_URL,
 		},
 	},
 });
