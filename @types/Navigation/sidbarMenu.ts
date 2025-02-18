@@ -8,12 +8,7 @@ declare global {
 		urlCompare: string;
 		children?: SidebarMenuItem[];
 	};
-
-	export type TopNavigationItem = {
-		title: string;
-		icon?: LucideIcon;
-		children?: SidebarMenuItem[];
-	};
+	
 	export type NavigationLocation = {
 		name: string;
 		params?: Record<string, string | number>;

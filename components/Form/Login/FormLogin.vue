@@ -74,7 +74,8 @@ const loginWithDiscord = async () => {
 	try{
 		var response = await auth.beginDiscordLogin("http://localhost:3000/auth/callbacks/discord");
 		if(response && response.url){
-			window.open(response.url, "_self");
+			toast.success("Login with Discord success");
+			window.location.href = response.url;
 		}
 	}
 	catch(e){
