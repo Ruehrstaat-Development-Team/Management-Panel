@@ -1,23 +1,10 @@
 <template>
-	<NavigationSidebarUserLoggedOut v-if="!user" />
-	<NavigationSidebarUserLoggedIn v-else :user="user" />
+	<NavigationSidebarUserLoggedOut v-if="!store.user" />
+	<NavigationSidebarUserLoggedIn v-else :user="store.user" />
 </template>
 
 <script lang="ts" setup>
-
-
-const { $api } = useNuxtApp();
-const session = useSession();
-const user = ref<User>();
-
-if(session.token) {
-	$api.user.getMe().then((usr) => {
-		user.value = usr;
-	});
-}
-else{
-	user.value = undefined;
-}
+let store = useUserStore();
 </script>
 
 <style lang="scss" scoped></style>

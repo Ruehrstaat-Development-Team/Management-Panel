@@ -11,6 +11,9 @@ export default defineNuxtConfig({
 		"nuxt-lucide-icons",
 		"@nuxt/image",
 		"@vee-validate/nuxt",
+		"@pinia/nuxt",
+		"pinia-plugin-persistedstate/nuxt",
+		"@nuxt/icon"
 	],
 	app: {
 		head: {
@@ -29,14 +32,17 @@ export default defineNuxtConfig({
 		classSuffix: "",
 		classPrefix: "",
 	},
-	sentry: {
-		sourceMapsUploadOptions: {
-			org: "mtnmedia",
-			project: "rst-web-frontend",
-			authToken: process.env.SENTRY_AUTH_TOKEN,
-		},
+	icon: {
+		customCollections: [{
+			prefix: "rst",
+			dir: "./assets/icons"
+		}],
 	},
 	//#endregion Module Configuration
+
+	imports: {
+		dirs: ["stores", "repository"],
+	},
 
 	runtimeConfig: {
 		public: {

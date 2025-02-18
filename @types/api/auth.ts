@@ -15,4 +15,7 @@ declare global {
 		code: string;
 		name: string;
 	};
+	type DiscordResponse = {
+		url: string;
+	}
 }

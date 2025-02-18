@@ -1,29 +1,31 @@
-import { $fetch } from "ofetch";
 import type { FetchOptions } from "ofetch";
-import AuthModule from "~/repository/modules/auth";
-import UserModule from "~/repository/modules/user";
 
-interface IApiInstance {
-	auth: AuthModule;
-	user: UserModule;
-}
+export default defineNuxtPlugin({
+	setup() {
+		const config = useRuntimeConfig();
 
-export default defineNuxtPlugin((nuxtApp) => {
-	const config = useRuntimeConfig();
-	const fetchOptions: FetchOptions = {
-		baseURL: config.public.API_BASE_URL,
-	};
+		var headers = useRequestHeaders(["cookie", "authorization"]);
+		const fetchOptions: FetchOptions = {
+			baseURL: config.public.API_BASE_URL,
+			credentials: "include",
+			headers: headers,
+			onRequest: (context) => {
+				const session = useSessionStore();
+				context.options.headers.append(
+					"Authorization",
+					"Bearer " + session.token
+				);
+			},
+			onRequestError: () => {},
+			onResponse: () => {},
+			onResponseError: () => {},
+		};
+		const api = $fetch.create(fetchOptions);
 
-	const apiFetcher = $fetch.create(fetchOptions);
-
-	const modules: IApiInstance = {
-		auth: new AuthModule(apiFetcher),
-		user: new UserModule(apiFetcher),
-	};
-
-	return {
-		provide: {
-			api: modules,
-		},
-	};
+		return {
+			provide: {
+				api,
+			},
+		};
+	},
 });
