@@ -1,5 +1,5 @@
 <template>
-	<div class="loader">
+	<div>
   <svg viewBox="0 0 32 32" :width="size" :height="size">
       <circle id="spinner" cx="16" cy="16" r="14" fill="none"></circle>
     </svg>
@@ -16,9 +16,6 @@ defineProps({
 </script>
 
 <style lang="scss" scoped>
-.loader {
-
-}
 
 .loader #spinner {
   box-sizing: border-box;

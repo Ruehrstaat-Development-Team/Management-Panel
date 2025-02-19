@@ -10,15 +10,12 @@ export default defineNuxtPlugin({
 			credentials: "include",
 			headers: headers,
 			onRequest: (context) => {
-				const session = useSessionStore();
+				const sessionStore = useSessionStore();
 				context.options.headers.append(
 					"Authorization",
-					"Bearer " + session.token
+					"Bearer " + sessionStore.token
 				);
 			},
-			onRequestError: () => {},
-			onResponse: () => {},
-			onResponseError: () => {},
 		};
 		const api = $fetch.create(fetchOptions);
 
