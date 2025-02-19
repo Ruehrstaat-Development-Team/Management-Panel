@@ -3,7 +3,7 @@
 		class="flex flex-row items-center gap-3 w-full"
 	>
 		<div
-			class="flex items-center justify-center bg-primary text-primary-foreground rounded-sm p-1 size-7 align-middle"
+			class="flex items-center justify-center bg-primary text-primary-foreground rounded-sm p-1 size-7 min-h-7 min-w-7 align-middle"
 		>
 			<LucideUser :size="16" />
 		</div>

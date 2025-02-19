@@ -1,6 +1,7 @@
 <template>
   <div>
     Home
+    <ThemeModeSelector/>
   </div>
 </template>
 

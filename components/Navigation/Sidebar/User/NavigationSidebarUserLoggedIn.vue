@@ -1,7 +1,7 @@
 <template>
 	<DropdownMenu>
 		<DropdownMenuTrigger
-			class="hover:bg-sidebar-accent rounded-md"
+			class="hover:bg-sidebar-accent rounded-md transition-[padding] duration-200"
 			:class="{ 'p-2': open, 'p-[2px]': !open }"
 		>
 			<NavigationSidebarUserProfile :user="user">
@@ -12,17 +12,27 @@
 			<DropdownMenuGroup>
 				<DropdownMenuItem>
 					<NuxtLink :to="{ name: 'profile' }">
-						<NavigationSidebarUserProfile :user="user" />
+						<NavigationSidebarUserProfile :user="user" >
+							<LucideArrowUpRight :size="16" />
+						</NavigationSidebarUserProfile>
 					</NuxtLink>
 				</DropdownMenuItem>
 			</DropdownMenuGroup>
 			<DropdownMenuSeparator />
 			<DropdownMenuGroup>
 				<DropdownMenuItem>
-					<LucideSettings :size="16" />
-					<span>Settings</span>
+					<NuxtLink
+						:to="{ name: 'settings' }"
+						class="flex items-center gap-2"
+					>
+						<LucideSettings :size="16" />
+						<span>Settings</span>
+					</NuxtLink>
 				</DropdownMenuItem>
-				<DropdownMenuItem @click="logout()" class="text-destructive hover:bg-destructive hover:text-destructive-foreground">
+				<DropdownMenuItem
+					@click="logout()"
+					class="text-destructive focus:bg-destructive focus:text-destructive-foreground"
+				>
 					<LucideArrowLeftFromLine :size="16" />
 					<span>Logout</span>
 				</DropdownMenuItem>
@@ -47,13 +57,13 @@ const session = useSessionStore();
 const store = useUserStore();
 
 const logout = async () => {
-	try{
+	try {
 		await authRep.logout();
 		session.setSession(null);
 		store.setUser(null);
 		toast.success("Logout success");
 	} catch (e) {
-		toast.error("Logout failed");	
+		toast.error("Logout failed");
 	}
 };
 </script>

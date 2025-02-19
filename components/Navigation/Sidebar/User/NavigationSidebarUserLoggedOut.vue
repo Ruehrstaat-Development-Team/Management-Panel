@@ -1,20 +1,45 @@
 <template>
-	<NuxtLink
-		:to="{ name: 'login' }"
-		class="hover:bg-sidebar-accent rounded-md"
-		:class="{ 'p-2': open, 'p-[2px]': !open }"
-	>
-		<div class="flex flex-row items-center gap-3">
-			<div
-				class="flex items-center justify-center bg-primary text-primary-foreground rounded-sm p-1 size-7 align-middle"
-			>
-				<LucideUser :size="16" />
+	<DropdownMenu>
+		<DropdownMenuTrigger
+			class="hover:bg-sidebar-accent rounded-md transition-[padding] duration-200"
+			:class="{ 'p-2': open, 'p-[2px]': !open }"
+		>
+			<div class="flex flex-row items-center gap-3">
+				<div
+					class="flex items-center justify-center bg-primary text-primary-foreground rounded-sm p-1 size-7 align-middle"
+				>
+					<LucideUser :size="16" />
+				</div>
+				<span
+					class="flex-grow flex flex-col justify-center items-start"
+				>
+					<span class="leading-none whitespace-nowrap">Settings</span>
+				</span>
 			</div>
-			<span class="flex-grow flex flex-col justify-center items-start">
-				<span class="leading-none whitespace-nowrap">Login</span>
-			</span>
-		</div>
-	</NuxtLink>
+		</DropdownMenuTrigger>
+		<DropdownMenuContent class="w-60">
+			<DropdownMenuGroup>
+				<DropdownMenuItem>
+					<NuxtLink
+						:to="{ name: 'settings' }"
+						class="flex items-center gap-2"
+					>
+						<LucideSettings :size="16" />
+						<span>Settings</span>
+					</NuxtLink>
+				</DropdownMenuItem>
+				<DropdownMenuItem>
+					<NuxtLink
+						:to="{ name: 'login' }"
+						class="flex items-center gap-2"
+					>
+						<LucideArrowRightFromLine :size="16" />
+						<span>Login</span>
+					</NuxtLink>
+				</DropdownMenuItem>
+			</DropdownMenuGroup>
+		</DropdownMenuContent>
+	</DropdownMenu>
 </template>
 
 <script lang="ts" setup>

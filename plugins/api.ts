@@ -11,10 +11,24 @@ export default defineNuxtPlugin({
 			headers: headers,
 			onRequest: (context) => {
 				const sessionStore = useSessionStore();
+				const applicationStore = useVolatileStore();
+				applicationStore.setLoading(true);
 				context.options.headers.append(
 					"Authorization",
 					"Bearer " + sessionStore.token
 				);
+			},
+			onRequestError: () => {
+				const applicationStore = useVolatileStore();
+				applicationStore.setLoading(false);
+			},
+			onResponse: () => {
+				const applicationStore = useVolatileStore();
+				applicationStore.setLoading(false);
+			},
+			onResponseError: () => {
+				const applicationStore = useVolatileStore();
+				applicationStore.setLoading(false);
 			},
 		};
 		const api = $fetch.create(fetchOptions);
