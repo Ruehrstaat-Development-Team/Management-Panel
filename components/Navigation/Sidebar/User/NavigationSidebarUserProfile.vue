@@ -8,10 +8,10 @@
 			<LucideUser :size="16" />
 		</div>
 		<span class="flex-grow flex flex-col justify-center items-start">
-			<span class="leading-none whitespace-nowrap">{{
+			<span class="leading-none whitespace-nowrap text-sm max-w-36 overflow-hidden text-ellipsis">{{
 				user?.nickname
 			}}</span>
-			<span class="text-xs text-muted-foreground">{{ user?.email }}</span>
+			<span class="text-xs text-muted-foreground max-w-36 overflow-hidden text-ellipsis">{{ user?.email }}</span>
 		</span>
 		<slot />
 	</div>

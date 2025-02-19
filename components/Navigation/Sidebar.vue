@@ -1,7 +1,7 @@
 <template>
 	<Sidebar collapsible="icon" class="overflow-hidden">
 		<SidebarHeader>
-			<NuxtImg src="./HeaderBackgroundLight.webp" alt="Ruehrstaat Squadron Banner" class="w-64 max-w-64 min-w-64 transition-[height] duration-200" :class="{'h-12': !persistentStore.sidebarOpen, 'h-20': persistentStore.sidebarOpen}"/>
+			<NavigationSidebarTop />
 		</SidebarHeader>
 		<SidebarContent>
 			<SidebarGroup>
