@@ -1,5 +1,5 @@
 declare global {
-    type PublicCarrier = {
+    type Carrier = {
         callsign: string;
         category: string;
         currentLocation: string;
@@ -8,7 +8,11 @@ declare global {
         marketId: string;
         name: string;
         owner: string;
-        services: string[];
+        services: CarrierService[];
     };
-    type PublicCarrierList = PublicCarrier[];
+    type CarrierService = {
+        label: string;
+        name: string;
+        odyssey: boolean;
+    };
 }

@@ -21,14 +21,14 @@
         </div>
       </div>
     </div>
-    <p v-else class="text-gray-500 text-sm">Keine Carrier vorhanden.</p>
+    <p v-else class="text-muted-foreground text-sm">Keine Carrier vorhanden.</p>
   </div>
 </template>
 
 <script lang="ts" setup>
 defineProps({
   carriers: {
-    type: Array as PropType<PublicCarrier[]>,
+    type: Array as PropType<Carrier[]>,
     required: true,
   },
 });
