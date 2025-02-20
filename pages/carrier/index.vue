@@ -14,7 +14,7 @@
       >
         <div class="flex justify-between items-center mt-auto">
           <div class="text-lg font-semibold">
-            {{ carrier. }} ({{ carrier.callsign }})
+            {{ carrier.name }} ({{ carrier.callsign }})
           </div>
           <div class="ml-2">
             <Badge>{{ carrier.category }}</Badge>
@@ -41,4 +41,6 @@ const carrierApi = carrierRepository($api);
 const loading = ref(true);
 
 const carriers = await carrierApi.getCarrier();
+
+loading.value = false;
 </script>
