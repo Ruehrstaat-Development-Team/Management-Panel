@@ -2,10 +2,12 @@
   <div>
     Home
     <ThemeModeSelector/>
+    <ThemeLanguageSelector/>
   </div>
 </template>
 
 <script lang="ts" setup>
+
 
 </script>
 

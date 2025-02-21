@@ -2,12 +2,12 @@
 	<form @submit="onSubmit">
 		<FormField v-slot="{ componentField }" name="email">
 			<FormItem>
-				<FormLabel>Email</FormLabel>
+				<FormLabel>{{ $t("form-login.email") }}</FormLabel>
 				<FormMessage />
 				<FormControl>
 					<Input
 						type="email"
-						placeholder="Email"
+						:placeholder="$t('form-login.email')"
 						v-bind="componentField"
 					/>
 				</FormControl>
@@ -15,20 +15,27 @@
 		</FormField>
 		<FormField v-slot="{ componentField }" name="password">
 			<FormItem>
-				<FormLabel>Password</FormLabel>
+				<FormLabel>{{ $t("form-login.password") }}</FormLabel>
 				<FormMessage />
 				<FormControl>
 					<Input
 						type="password"
-						placeholder="Password"
+						:placeholder="$t('form-login.password')"
 						v-bind="componentField"
 					/>
 				</FormControl>
 			</FormItem>
 		</FormField>
 		<div class="flex flex-row justify-end mt-3 gap-2">
-			<Button type="button" class="bg-[#5865f2] hover:bg-[#4650c0]" @click="loginWithDiscord()"><Icon name="rst:discord"/>Login with Discord</Button>
-			<Button type="submit">Login</Button>
+			<Button
+				type="button"
+				class="bg-[#5865f2] hover:bg-[#4650c0]"
+				@click="loginWithDiscord()"
+				><Icon name="rst:discord" />{{
+					$t("form-login.login-with-discord")
+				}}</Button
+			>
+			<Button type="submit">{{ $t("form-login.login") }}</Button>
 		</div>
 	</form>
 </template>
@@ -71,17 +78,18 @@ const onSubmit = form.handleSubmit(async (values) => {
 });
 
 const loginWithDiscord = async () => {
-	try{
-		var response = await auth.beginDiscordLogin("http://localhost:3000/auth/callbacks/discord");
-		if(response && response.url){
+	try {
+		var response = await auth.beginDiscordLogin(
+			"http://localhost:3000/auth/callbacks/discord"
+		);
+		if (response && response.url) {
 			toast.success("Login with Discord success");
 			window.location.href = response.url;
 		}
-	}
-	catch(e){
+	} catch (e) {
 		toast.error("Login failed");
 	}
-}
+};
 
 async function setUser() {
 	const usr = await user.getMe();

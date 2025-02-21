@@ -11,30 +11,30 @@
 		<DropdownMenuContent class="w-60">
 			<DropdownMenuGroup>
 				<DropdownMenuItem>
-					<NuxtLink :to="{ name: 'profile' }">
+					<i18n-link :to="{ name: 'profile' }">
 						<NavigationSidebarUserProfile :user="user" >
 							<LucideArrowUpRight :size="16" />
 						</NavigationSidebarUserProfile>
-					</NuxtLink>
+					</i18n-link>
 				</DropdownMenuItem>
 			</DropdownMenuGroup>
 			<DropdownMenuSeparator />
 			<DropdownMenuGroup>
 				<DropdownMenuItem>
-					<NuxtLink
+					<i18n-link
 						:to="{ name: 'settings' }"
 						class="flex items-center gap-2 w-full h-full"
 					>
 						<LucideSettings :size="16" />
-						<span>Settings</span>
-					</NuxtLink>
+						<span>{{ $t("layout-default.menu.settings") }}</span>
+					</i18n-link>
 				</DropdownMenuItem>
 				<DropdownMenuItem
 					@click="logout()"
 					class="text-destructive focus:bg-destructive focus:text-destructive-foreground"
 				>
 					<LucideArrowLeftFromLine :size="16" />
-					<span>Logout</span>
+					<span>{{ $t("layout-default.menu.logout") }}</span>
 				</DropdownMenuItem>
 			</DropdownMenuGroup>
 		</DropdownMenuContent>

@@ -8,10 +8,10 @@
       "
       as-child
     >
-      <NuxtLink :to="item.location" class="w-full !text-md flex flex-row items-center py-5 pr-3 pl-[calc(0.75rem-2px)] rounded-none">
+      <i18n-link :to="item.location" class="w-full !text-md flex flex-row items-center py-5 pr-3 pl-[calc(0.75rem-2px)] rounded-none">
         <component :is="item.icon" />
-        <span>{{ item.title }}</span>
-      </NuxtLink>
+        <span>{{ $t(item.title) }}</span>
+      </i18n-link>
     </SidebarMenuButton>
   </SidebarMenuItem>
 </template>

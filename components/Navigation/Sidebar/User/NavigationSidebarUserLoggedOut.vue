@@ -13,29 +13,29 @@
 				<span
 					class="flex-grow flex flex-col justify-center items-start"
 				>
-					<span class="leading-none whitespace-nowrap">Settings</span>
+					<span class="leading-none whitespace-nowrap">{{ $t("layout-default.menu.settings") }}</span>
 				</span>
 			</div>
 		</DropdownMenuTrigger>
 		<DropdownMenuContent class="w-60">
 			<DropdownMenuGroup>
 				<DropdownMenuItem>
-					<NuxtLink
+					<i18n-link
 						:to="{ name: 'settings' }"
 						class="flex items-center gap-2 w-full h-full"
 					>
 						<LucideSettings :size="16" />
-						<span>Settings</span>
-					</NuxtLink>
+						<span>{{ $t("layout-default.menu.settings") }}</span>
+					</i18n-link>
 				</DropdownMenuItem>
 				<DropdownMenuItem>
-					<NuxtLink
+					<i18n-link
 						:to="{ name: 'login' }"
 						class="flex items-center gap-2 w-full h-full"
 					>
 						<LucideArrowRightFromLine :size="16" />
-						<span>Login</span>
-					</NuxtLink>
+						<span>{{ $t("layout-default.menu.login") }}</span>
+					</i18n-link>
 				</DropdownMenuItem>
 			</DropdownMenuGroup>
 		</DropdownMenuContent>

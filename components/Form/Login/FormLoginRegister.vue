@@ -2,12 +2,12 @@
 	<form @submit="onSubmit">
 		<FormField v-slot="{ componentField }" name="nickname">
 			<FormItem>
-				<FormLabel>Nickname</FormLabel>
+				<FormLabel>{{ $t("form-register.nickname") }}</FormLabel>
 				<FormMessage />
 				<FormControl>
 					<Input
 						type="text"
-						placeholder="Nickname"
+						:placeholder="$t('form-register.nickname')"
 						v-bind="componentField"
 					/>
 				</FormControl>
@@ -15,12 +15,12 @@
 		</FormField>
 		<FormField v-slot="{ componentField }" name="cmdrname">
 			<FormItem>
-				<FormLabel>CMDR Name</FormLabel>
+				<FormLabel>{{ $t("form-register.cmdr-name") }}</FormLabel>
 				<FormMessage />
 				<FormControl>
 					<Input
 						type="text"
-						placeholder="CMDR Name"
+						:placeholder="$t('form-register.cmdr-name')"
 						v-bind="componentField"
 					/>
 				</FormControl>
@@ -28,12 +28,12 @@
 		</FormField>
 		<FormField v-slot="{ componentField }" name="email">
 			<FormItem>
-				<FormLabel>Email</FormLabel>
+				<FormLabel>{{ $t("form-register.email") }}</FormLabel>
 				<FormMessage />
 				<FormControl>
 					<Input
 						type="email"
-						placeholder="Email"
+						:placeholder="$t('form-register.email')"
 						v-bind="componentField"
 					/>
 				</FormControl>
@@ -41,19 +41,19 @@
 		</FormField>
 		<FormField v-slot="{ componentField }" name="password">
 			<FormItem>
-				<FormLabel>Password</FormLabel>
+				<FormLabel>{{ $t("form-register.password") }}</FormLabel>
 				<FormMessage />
 				<FormControl>
 					<Input
 						type="password"
-						placeholder="Password"
+						:placeholder="$t('form-register.password')"
 						v-bind="componentField"
 					/>
 				</FormControl>
 			</FormItem>
 		</FormField>
 		<div class="flex flex-row justify-end mt-3">
-			<Button type="submit">Login</Button>
+			<Button type="submit">{{ $t("form-register.register") }}</Button>
 		</div>
 	</form>
 </template>

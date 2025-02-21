@@ -10,7 +10,7 @@
 				<h1
 					class="text-3xl font-bold text-start absolute bottom-1 left-28 text-white"
 				>
-					Rührstaat Squadron
+					Ruehrstaat Squadron
 				</h1>
 				<ThemeImage
 					dark_src="/LogoCleanDark.webp"
@@ -25,14 +25,15 @@
 	</div>
 	<div class="absolute top-0 right-0 p-4">
 		<ThemeModeSelector />
+		<ThemeLanguageSelector />
 	</div>
 	<div class="absolute top-0 left-0 p-4">
-		<NuxtLink :to="{ name: 'index' }">
+		<i18n-link :to="{ name: 'index' }">
 			<Button variant="ghost">
 				<LucideArrowLeft :size="15" />
-				Zurück zur Startseite
+				{{ $t("layout-centered.menu.home")}}
 			</Button>
-		</NuxtLink>
+		</i18n-link>
 	</div>
 </template>
 

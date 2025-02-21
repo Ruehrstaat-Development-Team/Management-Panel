@@ -9,35 +9,35 @@ import {
 export default () => {
 	const items: SidebarMenuItem[] = [
 		{
-			title: "Home",
+			title: "layout-default.menu.home",
 			icon: LucideHome,
 			location: { name: "index" },
 			urlCompare: "/",
 		},
 		{
-			title: "Carrier",
+			title: "layout-default.menu.carrier",
 			icon: LucideOctagonAlert,
 			location: { name: "carrier" },
 			urlCompare: "/carrier",
 		},
 		{
-			title: "Information Database",
+			title: "layout-default.menu.information",
 			icon: LucideFileArchive,
 			location: { name: "information" },
 			urlCompare: "/information",
 		},
 		{
-			title: "Commanders",
+			title: "layout-default.menu.commanders",
 			icon: LucideUsers,
 			location: { name: "commanders" },
 			urlCompare: "/commanders",
 		},
-    {
-      title: "Gallery",
-      icon: LucideImages,
-      location: { name: "gallery" },
-      urlCompare: "/gallery",
-    }
+		{
+			title: "layout-default.menu.gallery",
+			icon: LucideImages,
+			location: { name: "gallery" },
+			urlCompare: "/gallery",
+		},
 	];
 	return items;
 };

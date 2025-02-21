@@ -18,9 +18,9 @@
             :is-active="route.path.includes(subitem.urlCompare)"
           >
             <SidebarMenuSubButton :tooltip="subitem.title" >
-              <NuxtLink :to="subitem.location" class="w-full">
+              <i18n-link :to="subitem.location" class="w-full">
                 <span>{{ subitem.title }}</span>
-              </NuxtLink>
+              </i18n-link>
             </SidebarMenuSubButton>
           </SidebarMenuSubItem>
         </SidebarMenuSub>

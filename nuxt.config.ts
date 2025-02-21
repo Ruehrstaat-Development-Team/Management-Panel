@@ -13,7 +13,8 @@ export default defineNuxtConfig({
 		"@pinia/nuxt",
 		"pinia-plugin-persistedstate/nuxt",
 		"@nuxt/icon",
-		"nuxt-lucide-icons"
+		"nuxt-lucide-icons",
+		"nuxt-i18n-micro",
 	],
 	app: {
 		head: {
@@ -34,14 +35,28 @@ export default defineNuxtConfig({
 	},
 	sentry: {
 		sourceMapsUploadOptions: {
-			enabled: false // we do this in the CI
-		}
+			enabled: false, // we do this in the CI
+		},
 	},
 	icon: {
-		customCollections: [{
-			prefix: "rst",
-			dir: "./assets/icons"
-		}],
+		customCollections: [
+			{
+				prefix: "rst",
+				dir: "./assets/icons",
+			},
+		],
+	},
+	i18n: {
+		locales: [
+			{ code: "en", iso: "en-US", displayName: "English" },
+			{ code: "de", iso: "de-DE", displayName: "Deutsch" },
+		],
+		defaultLocale: "en",
+		meta: true,
+		autoDetectLanguage: true,
+		strategy: "prefix_and_default",
+		disableWatcher: true,
+		disableUpdater: true,
 	},
 	//#endregion Module Configuration
 
