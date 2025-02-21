@@ -23,7 +23,7 @@
 				<DropdownMenuItem>
 					<NuxtLink
 						:to="{ name: 'settings' }"
-						class="flex items-center gap-2"
+						class="flex items-center gap-2 w-full h-full"
 					>
 						<LucideSettings :size="16" />
 						<span>Settings</span>

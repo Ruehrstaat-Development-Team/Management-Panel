@@ -8,12 +8,12 @@ export default defineNuxtConfig({
 		"shadcn-nuxt",
 		"@nuxtjs/color-mode",
 		"@sentry/nuxt/module",
-		"nuxt-lucide-icons",
 		"@nuxt/image",
 		"@vee-validate/nuxt",
 		"@pinia/nuxt",
 		"pinia-plugin-persistedstate/nuxt",
-		"@nuxt/icon"
+		"@nuxt/icon",
+		"nuxt-lucide-icons"
 	],
 	app: {
 		head: {
@@ -31,6 +31,11 @@ export default defineNuxtConfig({
 	colorMode: {
 		classSuffix: "",
 		classPrefix: "",
+	},
+	sentry: {
+		sourceMapsUploadOptions: {
+			enabled: false // we do this in the CI
+		}
 	},
 	icon: {
 		customCollections: [{
